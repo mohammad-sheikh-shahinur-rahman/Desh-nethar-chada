@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>চাঁদা ক্যালকুলেটর - বাংলাদেশ আওয়ামী লীগ</title>
+    <title>চাঁদা ক্যালকুলেটর - বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -13,9 +14,10 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0056b3 0%, #003366 100%); /* BNP Blue */
             min-height: 100vh;
             padding: 20px;
+            color: white;
         }
 
         .container {
@@ -70,7 +72,7 @@
         }
 
         select option {
-            background: #333;
+            background: #003366;
             color: white;
         }
 
@@ -337,6 +339,162 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .chanda-usage, .charts-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .chanda-usage h2, .charts-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .chanda-usage ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .chanda-usage li {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chanda-usage li span:first-child {
+            font-weight: bold;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .payment-gateway {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .payment-gateway h2 {
+            margin-bottom: 20px;
+        }
+
+        .payment-options button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .payment-modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        .payment-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 15px;
+            color: #333;
+            text-align: left;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .payment-modal-content input {
+            background: #eee;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .payment-modal-content button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .payment-modal-content button:hover {
+            background: #219d59;
+        }
+
+        .leaderboard-section, .comparison-section, .trend-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            display: none; /* Hidden by default */
+        }
+
+        .leaderboard-section h2, .comparison-section h2, .trend-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .leaderboard-list li {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .leaderboard-list li span:first-child {
+            font-weight: bold;
+        }
+
+        .comparison-data p, .trend-data p {
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -356,7 +514,7 @@
     <div class="container">
         <div class="header">
             <h1>🏛️ চাঁদা ক্যালকুলেটর</h1>
-            <p>বাংলাদেশ আওয়ামী লীগ</p>
+            <p>বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</p>
         </div>
 
         <form id="chandaForm">
@@ -364,15 +522,21 @@
                 <label for="profession">পেশা নির্বাচন করুন:</label>
                 <select id="profession" required>
                     <option value="">পেশা নির্বাচন করুন</option>
-                    <option value="doctor">ডাক্তার</option>
-                    <option value="engineer">ইঞ্জিনিয়ার</option>
-                    <option value="teacher">শিক্ষক</option>
-                    <option value="lawyer">আইনজীবী</option>
-                    <option value="businessman">ব্যবসায়ী</option>
-                    <option value="government">সরকারি কর্মচারী</option>
-                    <option value="private">বেসরকারি কর্মচারী</option>
-                    <option value="farmer">কৃষক</option>
-                    <option value="other">অন্যান্য</option>
+                    <option value="doctor">ডাক্তার (চিকিৎসক)</option>
+                    <option value="engineer">ইঞ্জিনিয়ার (প্রকৌশলী)</option>
+                    <option value="teacher">শিক্ষক (গুরুমশাই)</option>
+                    <option value="lawyer">আইনজীবী (উকিল সাহেব)</option>
+                    <option value="businessman">ব্যবসায়ী (বড়লোক)</option>
+                    <option value="government">সরকারি কর্মচারী (জনগণের সেবক)</option>
+                    <option value="private">বেসরকারি কর্মচারী (দিনমজুর)</option>
+                    <option value="farmer">কৃষক (মাটির সন্তান)</option>
+                    <option value="student">ছাত্র (ভবিষ্যতের নেতা)</option>
+                    <option value="housewife">গৃহিণী (গৃহকর্ত্রী)</option>
+                    <option value="unemployed">বেকার (আন্দোলন কর্মী)</option>
+                    <option value="politician">রাজনীতিবিদ (জননেতা)</option>
+                    <option value="journalist">সাংবাদিক (কলম সৈনিক)</option>
+                    <option value="artist">শিল্পী (সংস্কৃতি কর্মী)</option>
+                    <option value="other">অন্যান্য (সাধারণ জনতা)</option>
                 </select>
             </div>
 
@@ -412,8 +576,8 @@
         <div class="receipt" id="receipt">
             <div class="receipt-header">
                 <div class="receipt-title">চাঁদা প্রাপতির রসিদ</div>
-                <div class="receipt-subtitle">চাঁদা রিসিভ হয়েছে সোনা ভাই</div>
-                <p>বাংলাদেশ আওয়ামী লীগ</p>
+                <div class="receipt-subtitle">চাঁদা রিসিভ হয়েছে সোনা ভাই!</div>
+                <p>বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</p>
                 <p>তারিখ: <span id="receiptDate"></span></p>
                 <p>রসিদ নং: <span id="receiptNumber"></span></p>
             </div>
@@ -447,13 +611,13 @@
 
             <div class="receipt-footer">
                 <p><strong>ধন্যবাদ আপনার অবদানের জন্য!</strong></p>
-                <p>বাংলাদেশ আওয়ামী লীগের সাথে থাকুন</p>
+                <p>গণতন্ত্র পুনরুদ্ধারে বিএনপির সাথে থাকুন</p>
                 
                 <div class="signature-section">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" 
-                         alt="স্বাক্ষর" class="signature-img">
+                         alt="তারেক রহমান (খাম্বা তারেক) এর স্বাক্ষর" class="signature-img">
                     <div class="signature-name">তারেক রহমান (খাম্বা তারেক)</div>
-                    <div>সিনিয়র ভাইস চেয়ারম্যান</div>
+                    <div>ভারপ্রাপ্ত চেয়ারম্যান, লন্ডন</div>
                     <div>বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</div>
                 </div>
             </div>
@@ -464,11 +628,82 @@
                 <button class="download-btn print-btn" onclick="printReceipt()">🖨️ প্রিন্ট করুন</button>
             </div>
         </div>
+
+        <div class="chanda-usage" id="chandaUsage">
+            <h2>💰 আপনার চাঁদার টাকা যেভাবে ব্যবহৃত হবে:</h2>
+            <ul id="usageList">
+                <!-- Usage items will be populated here by JS -->
+            </ul>
+        </div>
+
+        <div class="charts-section" id="chartsSection">
+            <h2>📊 চাঁদার টাকার বন্টন</h2>
+            <div class="chart-container">
+                <canvas id="chandaPieChart"></canvas>
+            </div>
+        </div>
+
+        <div class="payment-gateway" id="paymentGateway">
+            <h2>💳 চাঁদা পরিশোধ করুন</h2>
+            <p>আপনার চাঁদা সরাসরি পরিশোধ করতে নিচের অপশনগুলো ব্যবহার করুন:</p>
+            <div class="payment-options">
+                <button onclick="openPaymentModal('bKash')">বিকাশ</button>
+                <button onclick="openPaymentModal('Nagad')">নগদ</button>
+                <button onclick="openPaymentModal('Rocket')">রকেট</button>
+            </div>
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="paymentModal" class="payment-modal">
+            <div class="payment-modal-content">
+                <span class="close-button" onclick="closePaymentModal()">&times;</span>
+                <h2><span id="paymentMethodName"></span> পেমেন্ট</h2>
+                <p>পরিমাণ: <strong id="paymentAmountDisplay"></strong></p>
+                <div class="form-group">
+                    <label for="mobileNumber">মোবাইল নম্বর:</label>
+                    <input type="text" id="mobileNumber" placeholder="আপনার মোবাইল নম্বর দিন" required>
+                </div>
+                <div class="form-group">
+                    <label for="pin">পিন নম্বর:</label>
+                    <input type="password" id="pin" placeholder="আপনার পিন নম্বর দিন" required>
+                </div>
+                <button onclick="confirmPayment()">পেমেন্ট নিশ্চিত করুন</button>
+            </div>
+        </div>
+
+        <div class="leaderboard-section" id="leaderboardSection">
+            <h2>🏆 লিডারবোর্ড (শীর্ষ চাঁদা প্রদানকারী)</h2>
+            <ul class="leaderboard-list">
+                <li><span>১. খাম্বা তারেক</span> <span>১,০০,০০,০০০ টাকা</span></li>
+                <li><span>২. বেগম খালেদা জিয়া</span> <span>৫০,০০,০০০ টাকা</span></li>
+                <li><span>৩. মির্জা ফখরুল ইসলাম আলমগীর</span> <span>১০,০০,০০০ টাকা</span></li>
+                <li><span>৪. রুহুল কবির রিজভী</span> <span>৫,০০,০০০ টাকা</span></li>
+                <li><span>৫. গয়েশ্বর চন্দ্র রায়</span> <span>২,০০,০০০ টাকা</span></li>
+            </ul>
+        </div>
+
+        <div class="comparison-section" id="comparisonSection">
+            <h2>📊 তুলনামূলক বিশ্লেষণ</h2>
+            <div class="comparison-data">
+                <p>আপনার চাঁদা: <span id="yourChandaComparison"></span></p>
+                <p>আপনার পেশার গড় চাঁদা: <span id="avgProfessionChanda"></span></p>
+                <p>আপনি <span id="comparisonResult"></span></p>
+            </div>
+        </div>
+
+        <div class="trend-section" id="trendSection">
+            <h2>📈 ট্রেন্ড এনালাইসিস</h2>
+            <div class="trend-data">
+                <p>গত ৬ মাসে চাঁদা সংগ্রহ: <span style="color: #2ecc71;">২৫% বৃদ্ধি</span></p>
+                <p>আগামী ৩ মাসের পূর্বাভাস: <span style="color: #f1c40f;">স্থিতিশীল</span></p>
+            </div>
+        </div>
+
     </div>
 
     <div class="footer">
-        <p>&copy; ২০২৪ বাংলাদেশ আওয়ামী লীগ। সকল অধিকার সংরক্ষিত।</p>
-        <p>🇧🇩 জয় বাংলা, জয় বঙ্গবন্ধু 🇧🇩</p>
+        <p>&copy; ২০২৪ বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)। সকল অধিকার সংরক্ষিত।</p>
+        <p>🇧🇩 জিয়াউর রহমান অমর হোক, গণতন্ত্র মুক্তি পাক 🇧🇩</p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -476,28 +711,53 @@
     
     <script>
         const professionRates = {
-            'doctor': 0.15,
+            'doctor': 0.10,
             'engineer': 0.10,
-            'teacher': 0.08,
-            'lawyer': 0.12,
-            'businessman': 0.20,
-            'government': 0.08,
+            'teacher': 0.10,
+            'lawyer': 0.10,
+            'businessman': 0.10,
+            'government': 0.10,
             'private': 0.10,
-            'farmer': 0.05,
+            'farmer': 0.10,
+            'student': 0.10,
+            'housewife': 0.10,
+            'unemployed': 0.10,
+            'politician': 0.10,
+            'journalist': 0.10,
+            'artist': 0.10,
             'other': 0.10
         };
 
         const professionNames = {
-            'doctor': 'ডাক্তার',
-            'engineer': 'ইঞ্জিনিয়ার',
-            'teacher': 'শিক্ষক',
-            'lawyer': 'আইনজীবী',
-            'businessman': 'ব্যবসায়ী',
-            'government': 'সরকারি কর্মচারী',
-            'private': 'বেসরকারি কর্মচারী',
-            'farmer': 'কৃষক',
-            'other': 'অন্যান্য'
+            'doctor': 'ডাক্তার (চিকিৎসক)',
+            'engineer': 'ইঞ্জিনিয়ার (প্রকৌশলী)',
+            'teacher': 'শিক্ষক (গুরুমশাই)',
+            'lawyer': 'আইনজীবী (উকিল সাহেব)',
+            'businessman': 'ব্যবসায়ী (বড়লোক)',
+            'government': 'সরকারি কর্মচারী (জনগণের সেবক)',
+            'private': 'বেসরকারি কর্মচারী (দিনমজুর)',
+            'farmer': 'কৃষক (মাটির সন্তান)',
+            'student': 'ছাত্র (ভবিষ্যতের নেতা)',
+            'housewife': 'গৃহিণী (গৃহকর্ত্রী)',
+            'unemployed': 'বেকার (আন্দোলন কর্মী)',
+            'politician': 'রাজনীতিবিদ (জননেতা)',
+            'journalist': 'সাংবাদিক (কলম সৈনিক)',
+            'artist': 'শিল্পী (সংস্কৃতি কর্মী)',
+            'other': 'অন্যান্য (সাধারণ জনতা)'
         };
+
+        const chandaUsageItems = [
+            { item: 'লন্ডনে তারেক সাহেবের বিলাসবহুল জীবনযাপন', percentage: 30 },
+            { item: 'আন্দোলনের নামে গাড়ি পোড়ানো ও ভাঙচুর', percentage: 20 },
+            { item: 'বিদেশি লবিস্ট নিয়োগ', percentage: 15 },
+            { item: 'নেতা-কর্মীদের জন্য সিঙ্গারা-সমুচা', percentage: 10 },
+            { item: 'মিথ্যা মামলা ও হয়রানি থেকে বাঁচতে আইনজীবীর ফি', percentage: 10 },
+            { item: 'নতুন করে দল গোছানোর চেষ্টা', percentage: 5 },
+            { item: 'অন্যান্য বিবিধ খরচ', percentage: 10 }
+        ];
+
+        let monthlyChandaAmount = 0;
+        let chandaPieChart;
 
         document.getElementById('chandaForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -514,6 +774,12 @@
             document.getElementById('loading').style.display = 'block';
             document.getElementById('results').style.display = 'none';
             document.getElementById('receipt').style.display = 'none';
+            document.getElementById('chandaUsage').style.display = 'none';
+            document.getElementById('chartsSection').style.display = 'none';
+            document.getElementById('paymentGateway').style.display = 'none';
+            document.getElementById('leaderboardSection').style.display = 'none';
+            document.getElementById('comparisonSection').style.display = 'none';
+            document.getElementById('trendSection').style.display = 'none';
 
             // Simulate loading time
             setTimeout(() => {
@@ -521,29 +787,91 @@
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('results').style.display = 'block';
                 document.getElementById('receipt').style.display = 'block';
+                document.getElementById('chandaUsage').style.display = 'block';
+                document.getElementById('chartsSection').style.display = 'block';
+                document.getElementById('paymentGateway').style.display = 'block';
+
+                // Show notification for receipt
+                showNotification('রসিদ তৈরি হয়েছে!', 'success');
             }, 2000);
         });
 
         function calculateChanda(profession, salary) {
-            const rate = professionRates[profession] || 0.10;
-            const monthlyChanda = Math.round(salary * rate);
-            const yearlyChanda = monthlyChanda * 12;
+            const rate = 0.10; // Fixed 10% Chanda rate
+            monthlyChandaAmount = Math.round(salary * rate);
+            const yearlyChanda = monthlyChandaAmount * 12;
 
             // Update results
             document.getElementById('monthlyIncome').textContent = formatMoney(salary);
             document.getElementById('chandaRate').textContent = (rate * 100) + '%';
-            document.getElementById('monthlyChanda').textContent = formatMoney(monthlyChanda);
+            document.getElementById('monthlyChanda').textContent = formatMoney(monthlyChandaAmount);
             document.getElementById('yearlyChanda').textContent = formatMoney(yearlyChanda);
 
             // Update receipt
             const now = new Date();
             document.getElementById('receiptDate').textContent = now.toLocaleDateString('bn-BD');
-            document.getElementById('receiptNumber').textContent = 'AWL-' + Date.now().toString().substr(-6);
+            document.getElementById('receiptNumber').textContent = 'BNP-' + Date.now().toString().substr(-6);
             document.getElementById('receiptProfession').textContent = professionNames[profession];
             document.getElementById('receiptIncome').textContent = formatMoney(salary);
             document.getElementById('receiptRate').textContent = (rate * 100) + '%';
-            document.getElementById('receiptAmount').textContent = formatMoney(monthlyChanda);
+            document.getElementById('receiptAmount').textContent = formatMoney(monthlyChandaAmount);
             document.getElementById('receiptYearlyAmount').textContent = formatMoney(yearlyChanda);
+
+            // Populate Chanda Usage List
+            const usageList = document.getElementById('usageList');
+            usageList.innerHTML = ''; // Clear previous items
+            chandaUsageItems.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<span>${item.item}</span> <span>${item.percentage}%</span>`;
+                usageList.appendChild(listItem);
+            });
+
+            // Update Pie Chart
+            updateChandaPieChart();
+        }
+
+        function updateChandaPieChart() {
+            const ctx = document.getElementById('chandaPieChart').getContext('2d');
+            if (chandaPieChart) {
+                chandaPieChart.destroy(); // Destroy existing chart if any
+            }
+            chandaPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: chandaUsageItems.map(item => item.item),
+                    datasets: [{
+                        data: chandaUsageItems.map(item => item.percentage),
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0',
+                            '#9966FF',
+                            '#FF9F40',
+                            '#E7E9ED'
+                        ],
+                        hoverBackgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0',
+                            '#9966FF',
+                            '#FF9F40',
+                            '#E7E9ED'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white'
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         function formatMoney(amount) {
@@ -559,14 +887,15 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             
-            // Add Bengali font support (simplified)
+            // Add Bengali font support (simplified - requires font embedding for full support)
             doc.setFont('helvetica');
             doc.setFontSize(16);
             
             // Header
-            doc.text('Chanda Receipt - Bangladesh Awami League', 20, 20);
+            doc.text('চাঁদা প্রাপতির রসিদ', 20, 20);
             doc.setFontSize(12);
-            doc.text('Chanda Receive Hoyeche Sona Bhai', 20, 35);
+            doc.text('চাঁদা রিসিভ হয়েছে সোনা ভাই!', 20, 35);
+            doc.text('বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)', 20, 45);
             
             // Receipt details
             const profession = document.getElementById('receiptProfession').textContent;
@@ -577,18 +906,21 @@
             const date = document.getElementById('receiptDate').textContent;
             const receiptNo = document.getElementById('receiptNumber').textContent;
             
-            doc.text('Date: ' + date, 20, 55);
-            doc.text('Receipt No: ' + receiptNo, 20, 70);
-            doc.text('Profession: ' + profession, 20, 85);
-            doc.text('Monthly Income: ' + income, 20, 100);
-            doc.text('Chanda Rate: ' + rate, 20, 115);
-            doc.text('Monthly Chanda: ' + amount, 20, 130);
-            doc.text('Yearly Chanda: ' + yearlyAmount, 20, 145);
+            doc.text('তারিখ: ' + date, 20, 60);
+            doc.text('রসিদ নং: ' + receiptNo, 20, 70);
+            doc.text('সদস্যের নাম: সম্মানিত সদস্য', 20, 85);
+            doc.text('পেশা: ' + profession, 20, 95);
+            doc.text('মাসিক আয়: ' + income, 20, 105);
+            doc.text('চাঁদার হার: ' + rate, 20, 115);
+            doc.text('মাসিক চাঁদা: ' + amount, 20, 125);
+            doc.text('বার্ষিক চাঁদা: ' + yearlyAmount, 20, 135);
             
             // Footer
-            doc.text('Thank you for your contribution!', 20, 170);
-            doc.text('Tarek Rahman (Khamba Tarek)', 20, 190);
-            doc.text('Senior Vice Chairman, BNP', 20, 205);
+            doc.text('ধন্যবাদ আপনার অবদানের জন্য!', 20, 155);
+            doc.text('গণতন্ত্র পুনরুদ্ধারে বিএনপির সাথে থাকুন', 20, 165);
+            doc.text('তারেক রহমান (খাম্বা তারেক)', 20, 185);
+            doc.text('ভারপ্রাপ্ত চেয়ারম্যান, লন্ডন', 20, 195);
+            doc.text('বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)', 20, 205);
             
             doc.save('chanda-receipt.pdf');
             showNotification('PDF ডাউনলোড সফল হয়েছে!', 'success');
@@ -598,7 +930,7 @@
             html2canvas(document.getElementById('receipt')).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'chanda-receipt.jpg';
-                link.href = canvas.toDataURL();
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
                 link.click();
                 showNotification('JPG ডাউনলোড সফল হয়েছে!', 'success');
             });
@@ -658,18 +990,59 @@
             }, 3000);
         }
 
+        function openPaymentModal(method) {
+            document.getElementById('paymentMethodName').textContent = method;
+            document.getElementById('paymentAmountDisplay').textContent = formatMoney(monthlyChandaAmount);
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function confirmPayment() {
+            const mobile = document.getElementById('mobileNumber').value;
+            const pin = document.getElementById('pin').value;
+
+            if (mobile && pin) {
+                showNotification(`আপনার ${formatMoney(monthlyChandaAmount)} চাঁদা সফলভাবে পরিশোধ হয়েছে!`, 'success');
+                closePaymentModal();
+            } else {
+                showNotification('মোবাইল নম্বর এবং পিন দিন।', 'error');
+            }
+        }
+
         function showTrendAnalysis() {
-            alert('📈 ট্রেন্ড এনালাইসিস: গত ৬ মাসে চাঁদা সংগ্রহ ২৫% বৃদ্ধি পেয়েছে!');
+            document.getElementById('leaderboardSection').style.display = 'none';
+            document.getElementById('comparisonSection').style.display = 'none';
+            document.getElementById('trendSection').style.display = 'block';
             toggleMenu();
         }
 
         function showComparison() {
-            alert('📊 তুলনামূলক বিশ্লেষণ: আপনার পেশার গড় চাঁদা থেকে আপনি এগিয়ে আছেন!');
+            document.getElementById('leaderboardSection').style.display = 'none';
+            document.getElementById('comparisonSection').style.display = 'block';
+            document.getElementById('trendSection').style.display = 'none';
+            
+            // Dummy data for comparison
+            const yourChanda = monthlyChandaAmount;
+            const avgProfessionChanda = 7000; // Example average
+            document.getElementById('yourChandaComparison').textContent = formatMoney(yourChanda);
+            document.getElementById('avgProfessionChanda').textContent = formatMoney(avgProfessionChanda);
+            if (yourChanda > avgProfessionChanda) {
+                document.getElementById('comparisonResult').textContent = 'আপনি আপনার পেশার গড় চাঁদা থেকে বেশি দিচ্ছেন! (গণতন্ত্রের জন্য নিবেদিত)';
+            } else if (yourChanda < avgProfessionChanda) {
+                document.getElementById('comparisonResult').textContent = 'আপনি আপনার পেশার গড় চাঁদা থেকে কম দিচ্ছেন! (গণতন্ত্রের জন্য আরও অবদান প্রয়োজন)';
+            } else {
+                document.getElementById('comparisonResult').textContent = 'আপনি আপনার পেশার গড় চাঁদা সমান দিচ্ছেন! (গণতন্ত্রের জন্য ভালো অবদান)';
+            }
             toggleMenu();
         }
 
         function showLeaderboard() {
-            alert('🏆 লিডারবোর্ড: আপনি এই মাসে টপ ১০ কন্ট্রিবিউটরের মধ্যে আছেন!');
+            document.getElementById('leaderboardSection').style.display = 'block';
+            document.getElementById('comparisonSection').style.display = 'none';
+            document.getElementById('trendSection').style.display = 'none';
             toggleMenu();
         }
 
@@ -685,4 +1058,5 @@
     </script>
 </body>
 </html>
+
 
