@@ -1,965 +1,688 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>দেশনেতার চাঁদা ক্যালকুলেটর - সম্পূর্ণ সংস্করণ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চাঁদা ক্যালকুলেটর - বাংলাদেশ আওয়ামী লীগ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-  <!-- html2canvas for screenshot -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+        }
 
-  <!-- jsPDF for PDF generation -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-  <!-- QRCode.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+        label {
+            display: block;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
 
-  <style>
-    body {
-      font-family: 'Noto Sans Bengali', sans-serif;
-      background: linear-gradient(-45deg, #d7f3e3, #a7d7f9, #fef3c7, #fce7f3);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      color: #064e3b;
-    }
+        select, input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(5px);
+        }
 
-    @keyframes gradient {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+        select option {
+            background: #333;
+            color: white;
+        }
 
-    .glass-effect {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
 
-    .result-card {
-      background: rgba(240, 253, 244, 0.8);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(34, 197, 94, 0.2);
-      box-shadow: 0 10px 40px rgba(34, 197, 94, 0.1);
-      transition: all 0.3s ease;
-    }
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
 
-    .result-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(34, 197, 94, 0.2);
-    }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #10b981, #059669);
-      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-      transition: all 0.3s ease;
-    }
+        .results {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: none;
+        }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
-    }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
 
-    .input-field {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(34, 197, 94, 0.3);
-      transition: all 0.3s ease;
-    }
+        .result-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: bold;
+        }
 
-    .input-field:focus {
-      border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-      background: rgba(255, 255, 255, 1);
-    }
+        .result-value {
+            color: #4ecdc4;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
 
-    .modal-backdrop {
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(5px);
-    }
+        .receipt {
+            margin-top: 20px;
+            padding: 30px;
+            background: white;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: none;
+        }
 
-    .modal-content {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
 
-    .notification {
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      z-index: 1000;
-      padding: 1rem 1.5rem;
-      border-radius: 0.5rem;
-      color: white;
-      font-weight: 600;
-      transform: translateX(400px);
-      transition: transform 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
+        .receipt-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
 
-    .notification.show {
-      transform: translateX(0);
-    }
+        .receipt-subtitle {
+            font-size: 1.2rem;
+            color: #27ae60;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-    .notification.success {
-      background: linear-gradient(135deg, #10b981, #059669);
-    }
+        .receipt-body {
+            margin-bottom: 30px;
+        }
 
-    .notification.error {
-      background: linear-gradient(135deg, #ef4444, #dc2626);
-    }
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+        }
 
-    .notification.info {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
+        .receipt-footer {
+            text-align: center;
+            border-top: 2px solid #333;
+            padding-top: 20px;
+        }
 
-    .loading-spinner {
-      border: 4px solid rgba(16, 185, 129, 0.3);
-      border-top: 4px solid #10b981;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-    }
+        .signature-section {
+            margin-top: 30px;
+            text-align: center;
+        }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .signature-img {
+            max-width: 200px;
+            height: auto;
+            margin: 10px 0;
+        }
 
-    .chart-container {
-      position: relative;
-      height: 300px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      padding: 1rem;
-    }
-  </style>
+        .signature-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .pdf-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .jpg-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .print-btn {
+            background: #2ecc71;
+            color: white;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 5px auto;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            z-index: 999;
+            padding: 80px 20px 20px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .download-btn {
+                width: 100%;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="fixed w-full top-0 z-50 glass-effect text-emerald-800 shadow-2xl p-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-12 h-12" />
-        <h1 class="text-xl font-bold">দেশনেতার চাঁদা ক্যালকুলেটর</h1>
-      </div>
-    </div>
-  </header>
+    <button class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-  <!-- Main Content -->
-  <main class="max-w-4xl mx-auto mt-24 p-6 glass-effect rounded-2xl">
-    <!-- Hero Section -->
-    <div class="text-center mb-8">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" class="w-32 h-32 mx-auto mb-4" alt="BNP" />
-      <h2 class="text-4xl font-bold text-emerald-800 mb-3">দেশনেতার চাঁদা ক্যালকুলেটর</h2>
-      <p class="text-xl italic text-emerald-700 font-medium">"আপনার আত্মত্যাগ, আমাদের পরবর্তী বাজেট।"</p>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="showTrendAnalysis()">📈 ট্রেন্ড এনালাইসিস</a>
+        <a href="#" onclick="showComparison()">📊 তুলনামূলক বিশ্লেষণ</a>
+        <a href="#" onclick="showLeaderboard()">🏆 লিডারবোর্ড</a>
+        <a href="#" onclick="toggleMenu()">❌ বন্ধ করুন</a>
     </div>
 
-    <!-- Calculator Form -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-      <div>
-        <label for="profession" class="font-semibold block mb-3 text-lg">
-          <i class="fas fa-briefcase mr-2 text-emerald-600"></i>
-          আপনার পেশা
-        </label>
-        <select id="profession" class="input-field w-full p-4 rounded-xl text-lg font-medium">
-          <option selected disabled>--পেশা নির্বাচন করুন--</option>
-          <option value="doctor">👨‍⚕️ ডাক্তার</option>
-          <option value="engineer">👨‍💻 ইঞ্জিনিয়ার</option>
-          <option value="teacher">👨‍🏫 শিক্ষক</option>
-          <option value="businessman">👨‍💼 ব্যবসায়ী</option>
-          <option value="govt_job">🏛️ সরকারি চাকুরিজীবী</option>
-          <option value="freelancer">💻 ফ্রিল্যান্সার</option>
-          <option value="rickshaw_puller">🚲 রিকশাওয়ালা</option>
-          <option value="day_laborer">👷 দিনমজুর</option>
-          <option value="unemployed">😔 বেকার</option>
-          <option value="expatriate_worker">✈️ প্রবাসী কর্মী</option>
-        </select>
-      </div>
-      <div>
-        <label for="salary" class="font-semibold block mb-3 text-lg">
-          <i class="fas fa-money-bill-wave mr-2 text-emerald-600"></i>
-          মাসিক আয় (৳)
-        </label>
-        <input type="number" id="salary" placeholder="৳ টাকার পরিমাণ লিখুন..." class="input-field w-full p-4 rounded-xl text-lg font-medium" min="0" />
-      </div>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ চাঁদা ক্যালকুলেটর</h1>
+            <p>বাংলাদেশ আওয়ামী লীগ</p>
+        </div>
+
+        <form id="chandaForm">
+            <div class="form-group">
+                <label for="profession">পেশা নির্বাচন করুন:</label>
+                <select id="profession" required>
+                    <option value="">পেশা নির্বাচন করুন</option>
+                    <option value="doctor">ডাক্তার</option>
+                    <option value="engineer">ইঞ্জিনিয়ার</option>
+                    <option value="teacher">শিক্ষক</option>
+                    <option value="lawyer">আইনজীবী</option>
+                    <option value="businessman">ব্যবসায়ী</option>
+                    <option value="government">সরকারি কর্মচারী</option>
+                    <option value="private">বেসরকারি কর্মচারী</option>
+                    <option value="farmer">কৃষক</option>
+                    <option value="other">অন্যান্য</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="salary">মাসিক আয় (টাকা):</label>
+                <input type="number" id="salary" placeholder="আপনার মাসিক আয় লিখুন" required>
+            </div>
+
+            <button type="submit" class="btn">হিসাব দেখুন</button>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>হিসাব করা হচ্ছে...</p>
+        </div>
+
+        <div class="results" id="results">
+            <h2 style="color: white; text-align: center; margin-bottom: 20px;">📊 চাঁদার হিসাব</h2>
+            <div class="result-item">
+                <span class="result-label">মাসিক আয়:</span>
+                <span class="result-value" id="monthlyIncome">০ টাকা</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">চাঁদার হার:</span>
+                <span class="result-value" id="chandaRate">১০%</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">মাসিক চাঁদা:</span>
+                <span class="result-value" id="monthlyChanda">০ টাকা</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">বার্ষিক চাঁদা:</span>
+                <span class="result-value" id="yearlyChanda">০ টাকা</span>
+            </div>
+        </div>
+
+        <div class="receipt" id="receipt">
+            <div class="receipt-header">
+                <div class="receipt-title">চাঁদা প্রাপতির রসিদ</div>
+                <div class="receipt-subtitle">চাঁদা রিসিভ হয়েছে সোনা ভাই</div>
+                <p>বাংলাদেশ আওয়ামী লীগ</p>
+                <p>তারিখ: <span id="receiptDate"></span></p>
+                <p>রসিদ নং: <span id="receiptNumber"></span></p>
+            </div>
+
+            <div class="receipt-body">
+                <div class="receipt-row">
+                    <span>সদস্যের নাম:</span>
+                    <span>সম্মানিত সদস্য</span>
+                </div>
+                <div class="receipt-row">
+                    <span>পেশা:</span>
+                    <span id="receiptProfession">-</span>
+                </div>
+                <div class="receipt-row">
+                    <span>মাসিক আয়:</span>
+                    <span id="receiptIncome">০ টাকা</span>
+                </div>
+                <div class="receipt-row">
+                    <span>চাঁদার হার:</span>
+                    <span id="receiptRate">১০%</span>
+                </div>
+                <div class="receipt-row">
+                    <span><strong>মাসিক চাঁদা:</strong></span>
+                    <span id="receiptAmount"><strong>০ টাকা</strong></span>
+                </div>
+                <div class="receipt-row">
+                    <span><strong>বার্ষিক চাঁদা:</strong></span>
+                    <span id="receiptYearlyAmount"><strong>০ টাকা</strong></span>
+                </div>
+            </div>
+
+            <div class="receipt-footer">
+                <p><strong>ধন্যবাদ আপনার অবদানের জন্য!</strong></p>
+                <p>বাংলাদেশ আওয়ামী লীগের সাথে থাকুন</p>
+                
+                <div class="signature-section">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" 
+                         alt="স্বাক্ষর" class="signature-img">
+                    <div class="signature-name">তারেক রহমান (খাম্বা তারেক)</div>
+                    <div>সিনিয়র ভাইস চেয়ারম্যান</div>
+                    <div>বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</div>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <button class="download-btn pdf-btn" onclick="downloadPDF()">📄 PDF ডাউনলোড</button>
+                <button class="download-btn jpg-btn" onclick="downloadJPG()">🖼️ JPG ডাউনলোড</button>
+                <button class="download-btn print-btn" onclick="printReceipt()">🖨️ প্রিন্ট করুন</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Error Message -->
-    <div id="error-message" class="text-red-600 font-semibold text-center mb-4 hidden">
-      <i class="fas fa-exclamation-triangle mr-2"></i>
-      <span id="error-text"></span>
+    <div class="footer">
+        <p>&copy; ২০২৪ বাংলাদেশ আওয়ামী লীগ। সকল অধিকার সংরক্ষিত।</p>
+        <p>🇧🇩 জয় বাংলা, জয় বঙ্গবন্ধু 🇧🇩</p>
     </div>
 
-    <!-- Calculate Button -->
-    <div class="text-center mb-8">
-      <button id="calculate-btn" class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-        <i class="fas fa-calculator mr-2"></i>
-        হিসাব দেখুন
-      </button>
-    </div>
-
-    <!-- Loader -->
-    <div id="loader" class="text-center mb-8 hidden">
-      <div class="loading-spinner mx-auto mb-4"></div>
-      <p class="text-emerald-700 font-semibold text-lg">
-        <i class="fas fa-cog fa-spin mr-2"></i>
-        হিসাব করা হচ্ছে...
-      </p>
-    </div>
-
-    <!-- Results Section -->
-    <section id="result-container" class="hidden">
-      <!-- Main Results -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="result-card p-6 rounded-2xl">
-          <h3 class="font-bold text-xl mb-4 text-emerald-800">
-            <i class="fas fa-wallet mr-2"></i>
-            আপনার হাতে থাকবে
-          </h3>
-          <p id="remaining-salary" class="text-4xl font-extrabold text-emerald-600"></p>
-        </div>
-
-        <div class="result-card p-6 rounded-2xl flex items-center gap-4">
-          <div id="leader-mood-icon" class="text-6xl"></div>
-          <div>
-            <h3 class="font-bold text-lg text-emerald-800 mb-2">হাই কমান্ডের প্রতিক্রিয়া</h3>
-            <p id="leader-mood-text" class="font-semibold text-lg"></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Detailed Stats -->
-      <div class="result-card p-6 rounded-2xl mb-8">
-        <h3 class="font-bold text-xl mb-4 text-emerald-800">
-          <i class="fas fa-chart-bar mr-2"></i>
-          চাঁদার বিস্তারিত
-        </h3>
-        <div id="result-details" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
-      </div>
-
-      <!-- Charts Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div class="chart-container">
-          <h4 class="text-lg font-bold text-emerald-800 mb-4 text-center">
-            <i class="fas fa-chart-pie mr-2"></i>
-            চাঁদার বিতরণ
-          </h4>
-          <canvas id="chadaChart"></canvas>
-        </div>
-        <div class="chart-container">
-          <h4 class="text-lg font-bold text-emerald-800 mb-4 text-center">
-            <i class="fas fa-chart-line mr-2"></i>
-            বার্ষিক প্রক্ষেপণ
-          </h4>
-          <canvas id="yearlyChart"></canvas>
-        </div>
-      </div>
-
-      <!-- Humor Text -->
-      <div class="result-card p-6 rounded-2xl mb-8 text-center">
-        <p id="humor-text" class="text-xl italic text-emerald-800 font-semibold"></p>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="flex flex-wrap justify-center gap-4 mb-8">
-        <button id="generate-invoice-btn" class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-          <i class="fas fa-receipt mr-2"></i>
-          রসিদ তৈরি করুন
-        </button>
-        <button id="share-result-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
-          <i class="fas fa-share-alt mr-2"></i>
-          শেয়ার করুন
-        </button>
-      </div>
-
-      <!-- Advanced Features -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div class="result-card p-6 rounded-2xl text-center">
-          <i class="fas fa-chart-line text-4xl text-emerald-600 mb-4"></i>
-          <h4 class="font-bold text-lg mb-2">ট্রেন্ড এনালাইসিস</h4>
-          <p class="text-sm text-gray-600 mb-4">আপনার চাঁদার ট্রেন্ড দেখুন</p>
-          <button id="trend-analysis-btn" class="btn-primary px-4 py-2 rounded-lg text-sm">
-            দেখুন
-          </button>
-        </div>
-        
-        <div class="result-card p-6 rounded-2xl text-center">
-          <i class="fas fa-users text-4xl text-emerald-600 mb-4"></i>
-          <h4 class="font-bold text-lg mb-2">তুলনামূলক বিশ্লেষণ</h4>
-          <p class="text-sm text-gray-600 mb-4">অন্যদের সাথে তুলনা করুন</p>
-          <button id="comparison-btn" class="btn-primary px-4 py-2 rounded-lg text-sm">
-            তুলনা করুন
-          </button>
-        </div>
-        
-        <div class="result-card p-6 rounded-2xl text-center">
-          <i class="fas fa-trophy text-4xl text-emerald-600 mb-4"></i>
-          <h4 class="font-bold text-lg mb-2">লিডারবোর্ড</h4>
-          <p class="text-sm text-gray-600 mb-4">টপ কন্ট্রিবিউটর দেখুন</p>
-          <button id="leaderboard-btn" class="btn-primary px-4 py-2 rounded-lg text-sm">
-            র‍্যাঙ্কিং
-          </button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Invoice Modal -->
-  <div id="invoice-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
-    <div class="modal-content rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
-      <button id="close-invoice-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
-        <i class="fas fa-times"></i>
-      </button>
-
-      <div id="invoice-content" class="select-text">
-        <div class="text-center mb-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP Logo" class="w-20 h-20 mx-auto mb-4" />
-          <h2 class="text-3xl font-bold text-emerald-800 mb-2">দেশনেতার চাঁদা রসিদ</h2>
-          <p class="text-gray-600">বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</p>
-          <div class="w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 my-4"></div>
-        </div>
-        
-        <div id="invoice-body" class="mb-6"></div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div class="text-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="দেশনেতার স্বাক্ষর" class="mx-auto w-40 mb-2" />
-            <p class="text-sm text-gray-600 font-semibold">দেশনেতার স্বাক্ষর</p>
-            <p class="text-xs text-gray-500">তারেক রহমান</p>
-          </div>
-          <div class="text-center">
-            <div id="invoice-qr" class="mx-auto w-32 h-32 mb-2"></div>
-            <p class="text-xs text-gray-500">QR কোড স্ক্যান করুন</p>
-          </div>
-        </div>
-
-        <div class="text-center text-xs text-gray-500 border-t pt-4">
-          <p>এই রসিদটি ডিজিটালভাবে তৈরি এবং বৈধ</p>
-          <p>© ২০২৫ বাংলাদেশ জাতীয়তাবাদী দল</p>
-        </div>
-      </div>
-
-      <div class="mt-6 flex flex-wrap justify-center gap-4">
-        <button id="download-pdf-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-          <i class="fas fa-file-pdf"></i>
-          PDF ডাউনলোড
-        </button>
-        <button id="download-jpg-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-          <i class="fas fa-image"></i>
-          JPG ডাউনলোড
-        </button>
-        <button id="print-invoice-btn" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-          <i class="fas fa-print"></i>
-          প্রিন্ট করুন
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Feature Modals -->
-  <div id="leaderboard-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
-    <div class="modal-content rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
-      <button id="close-leaderboard-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
-        <i class="fas fa-times"></i>
-      </button>
-      <h3 class="text-2xl font-bold text-emerald-800 mb-4">
-        <i class="fas fa-trophy mr-2"></i>
-        লিডারবোর্ড
-      </h3>
-      <div id="leaderboard-content"></div>
-    </div>
-  </div>
-
-  <div id="comparison-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
-    <div class="modal-content rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
-      <button id="close-comparison-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
-        <i class="fas fa-times"></i>
-      </button>
-      <h3 class="text-2xl font-bold text-emerald-800 mb-4">
-        <i class="fas fa-users mr-2"></i>
-        তুলনামূলক বিশ্লেষণ
-      </h3>
-      <div id="comparison-content"></div>
-    </div>
-  </div>
-
-  <div id="trend-analysis-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
-    <div class="modal-content rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
-      <button id="close-trend-analysis-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
-        <i class="fas fa-times"></i>
-      </button>
-      <h3 class="text-2xl font-bold text-emerald-800 mb-4">
-        <i class="fas fa-chart-line mr-2"></i>
-        ট্রেন্ড এনালাইসিস
-      </h3>
-      <div id="trend-analysis-content"></div>
-    </div>
-  </div>
-
-  <!-- Notification -->
-  <div id="notification" class="notification">
-    <span id="notification-text"></span>
-  </div>
-
-  <!-- Scripts -->
-  <script>
-    // Global variables
-    let currentCalculation = null;
-    let chadaChartInstance = null;
-    let yearlyChartInstance = null;
-
-    // Notification system
-    function showNotification(message, type = 'success') {
-      const notification = document.getElementById('notification');
-      const notificationText = document.getElementById('notification-text');
-      
-      notificationText.textContent = message;
-      notification.className = `notification ${type}`;
-      notification.classList.add('show');
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 4000);
-    }
-
-    // Format currency in Bangladeshi Taka
-    function formatCurrency(amount) {
-      return `৳ ${amount.toLocaleString("bn-BD", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      })}`;
-    }
-
-    // Humor text for profession
-    function getHumorText(profession) {
-      const texts = {
-        doctor: "ডাক্তার সাহেব, দেশনেত্রীর চিকিৎসার জন্য আপনার অবদান খুবই জরুরি!",
-        engineer: "ইঞ্জিনিয়ার সাহেব, নতুন বাংলাদেশ গড়তে আপনার পকেটের অবদানও লাগবে!",
-        teacher: "শিক্ষক মানুষ, আপনার দোয়াটাই বড় কথা। তবে দোয়ার সাথে 'দান' হলে গণতন্ত্র মুক্তি পাবে।",
-        govt_job: "সরকারী চাকুরীজীবী? ভয় পাবেন না, সরকার বদলালে আপনিই তো আমাদের লোক!",
-        businessman: "ব্যবসায়ী ভাই, শহীদ জিয়ার আদর্শ বাস্তবায়নে আপনার বিনিয়োগ আবশ্যক!",
-        freelancer: "ফ্রিল্যান্সার ভাই, লন্ডনে নেতার কাছে আপনার ডলারের খুব দরকার!",
-        rickshaw_puller: "রিকশাওয়ালা ভাই, আপনার ভাড়ার টাকা দিয়ে নেতার গাড়ির পেট্রোল! কী চমৎকার ব্যাপার!",
-        day_laborer: "দিনমজুর ভাই, আপনার হাড়ভাঙা খাটুনির টাকা দিয়ে নেতার বিদেশ সফর! দেশপ্রেমের নমুনা!",
-        unemployed: "বেকার ভাই, কাজ নেই কিন্তু চাঁদা দিতে হবে! এটাই তো আমাদের পার্টির নিয়ম!",
-        expatriate_worker: "প্রবাসী ভাই, আপনার রেমিট্যান্সই দেশের মেরুদণ্ড! সেই মেরুদণ্ড নেতার পকেটে!"
-      };
-      return texts[profession] || "আপনার টাকায় কেনা পেট্রোল গণতন্ত্রের মশাল জ্বালাবে!";
-    }
-
-    // Leader mood based on monthly chada
-    function getLeadersMood(monthlyChada) {
-      if (monthlyChada < 2000)
-        return { icon: "😡", text: "চেয়ারম্যান হতাশ!" };
-      if (monthlyChada < 10000)
-        return { icon: "🤔", text: "লন্ডন থেকে বার্তা আসবে..." };
-      if (monthlyChada < 50000)
-        return { icon: "😄", text: "দেশনেত্রী খুশি হবেন!" };
-      if (monthlyChada < 100000)
-        return { icon: "💪", text: "জিয়ার সৈনিক সফল!" };
-      return { icon: "🏆", text: "সরাসরি নমিনেশন!" };
-    }
-
-    // Calculate chada function
-    function calculateChada() {
-      const profession = document.getElementById("profession").value;
-      const salary = parseFloat(document.getElementById("salary").value);
-
-      const resultContainer = document.getElementById("result-container");
-      const errorMessage = document.getElementById("error-message");
-      const errorText = document.getElementById("error-text");
-      const loader = document.getElementById("loader");
-
-      errorMessage.classList.add("hidden");
-      resultContainer.classList.add("hidden");
-
-      if (!profession || profession === "default") {
-        errorText.textContent = "বিপ্লবী, আপনার পেশা নির্বাচন করুন!";
-        errorMessage.classList.remove("hidden");
-        showNotification("পেশা নির্বাচন করুন!", "error");
-        return;
-      }
-
-      if (isNaN(salary) || salary <= 0) {
-        errorText.textContent = "বিপ্লবী, আপনার আয়ের পরিমাণ সঠিকভাবে লিখুন!";
-        errorMessage.classList.remove("hidden");
-        showNotification("সঠিক আয়ের পরিমাণ লিখুন!", "error");
-        return;
-      }
-
-      // Show loader
-      loader.classList.remove("hidden");
-
-      setTimeout(() => {
-        loader.classList.add("hidden");
-
-        const monthlyChada = salary * 0.1;
-        const remainingSalary = salary * 0.9;
-        const dailyChada = monthlyChada / 30;
-        const weeklyChada = dailyChada * 7;
-        const yearlyChada = monthlyChada * 12;
-
-        // Store current calculation
-        currentCalculation = {
-          profession,
-          salary,
-          monthlyChada,
-          remainingSalary,
-          dailyChada,
-          weeklyChada,
-          yearlyChada,
-          timestamp: new Date().toISOString()
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script>
+        const professionRates = {
+            'doctor': 0.15,
+            'engineer': 0.10,
+            'teacher': 0.08,
+            'lawyer': 0.12,
+            'businessman': 0.20,
+            'government': 0.08,
+            'private': 0.10,
+            'farmer': 0.05,
+            'other': 0.10
         };
 
-        // Update humor text
-        document.getElementById("humor-text").textContent = getHumorText(profession);
+        const professionNames = {
+            'doctor': 'ডাক্তার',
+            'engineer': 'ইঞ্জিনিয়ার',
+            'teacher': 'শিক্ষক',
+            'lawyer': 'আইনজীবী',
+            'businessman': 'ব্যবসায়ী',
+            'government': 'সরকারি কর্মচারী',
+            'private': 'বেসরকারি কর্মচারী',
+            'farmer': 'কৃষক',
+            'other': 'অন্যান্য'
+        };
 
-        // Leader mood
-        const mood = getLeadersMood(monthlyChada);
-        document.getElementById("leader-mood-icon").textContent = mood.icon;
-        document.getElementById("leader-mood-text").textContent = mood.text;
-
-        // Remaining salary display
-        document.getElementById("remaining-salary").textContent = formatCurrency(remainingSalary);
-
-        // Detailed results
-        const resultDetails = document.getElementById("result-details");
-        resultDetails.innerHTML = "";
-        [
-          { label: "দৈনিক", value: formatCurrency(dailyChada), icon: "fas fa-calendar-day" },
-          { label: "সাপ্তাহিক", value: formatCurrency(weeklyChada), icon: "fas fa-calendar-week" },
-          { label: "মাসিক", value: formatCurrency(monthlyChada), icon: "fas fa-calendar-alt" },
-          { label: "বাৎসরিক", value: formatCurrency(yearlyChada), icon: "fas fa-calendar" },
-        ].forEach((item) => {
-          const div = document.createElement("div");
-          div.className = "bg-emerald-100 p-4 rounded-xl text-center transition-transform hover:scale-105";
-          div.innerHTML = `
-            <i class="${item.icon} text-2xl text-emerald-600 mb-2"></i>
-            <p class="font-semibold text-emerald-800">${item.label}</p>
-            <p class="text-lg font-bold text-emerald-600">${item.value}</p>
-          `;
-          resultDetails.appendChild(div);
-        });
-
-        // Charts
-        updateCharts(dailyChada, weeklyChada, monthlyChada, yearlyChada);
-
-        resultContainer.classList.remove("hidden");
-        resultContainer.scrollIntoView({ behavior: "smooth" });
-        showNotification("হিসাব সম্পন্ন হয়েছে!", "success");
-      }, 1500);
-    }
-
-    // Update charts function
-    function updateCharts(dailyChada, weeklyChada, monthlyChada, yearlyChada) {
-      // Pie Chart
-      const ctx1 = document.getElementById("chadaChart").getContext("2d");
-      if (chadaChartInstance) chadaChartInstance.destroy();
-      
-      chadaChartInstance = new Chart(ctx1, {
-        type: "doughnut",
-        data: {
-          labels: ["দৈনিক", "সাপ্তাহিক", "মাসিক", "বাৎসরিক"],
-          datasets: [
-            {
-              label: "চাঁদার পরিমাণ (টাকায়)",
-              data: [dailyChada, weeklyChada, monthlyChada, yearlyChada],
-              backgroundColor: ["rgba(34,197,94,0.8)", "rgba(59,130,246,0.8)", "rgba(147,51,234,0.8)", "rgba(239,68,68,0.8)"],
-              borderColor: "#ffffff",
-              borderWidth: 3,
-              hoverOffset: 10,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                padding: 20,
-                font: { size: 12, family: 'Noto Sans Bengali' }
-              }
+        document.getElementById('chandaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const profession = document.getElementById('profession').value;
+            const salary = parseFloat(document.getElementById('salary').value);
+            
+            if (!profession || !salary || salary <= 0) {
+                alert('অনুগ্রহ করে সকল তথ্য সঠিকভাবে পূরণ করুন।');
+                return;
             }
-          }
-        },
-      });
 
-      // Line Chart for yearly projection
-      const ctx2 = document.getElementById("yearlyChart").getContext("2d");
-      if (yearlyChartInstance) yearlyChartInstance.destroy();
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('receipt').style.display = 'none';
 
-      const months = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
-      const monthlyData = months.map(() => monthlyChada);
-
-      yearlyChartInstance = new Chart(ctx2, {
-        type: "line",
-        data: {
-          labels: months,
-          datasets: [
-            {
-              label: "মাসিক চাঁদা",
-              data: monthlyData,
-              borderColor: "#10b981",
-              backgroundColor: "rgba(16, 185, 129, 0.1)",
-              borderWidth: 3,
-              fill: true,
-              tension: 0.4,
-              pointBackgroundColor: "#10b981",
-              pointBorderColor: "#ffffff",
-              pointBorderWidth: 2,
-              pointRadius: 6,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: { beginAtZero: true },
-          }
-        },
-      });
-    }
-
-    // Share result function
-    function shareResult() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
-
-      const shareText = `আমার মাসিক চাঁদা: ${formatCurrency(currentCalculation.monthlyChada)}\nহাতে থাকবে: ${formatCurrency(currentCalculation.remainingSalary)}\n\n#দেশনেতারচাঁদা #BNP`;
-      
-      if (navigator.share) {
-        navigator.share({
-          title: 'দেশনেতার চাঁদা ক্যালকুলেটর',
-          text: shareText,
-          url: window.location.href
+            // Simulate loading time
+            setTimeout(() => {
+                calculateChanda(profession, salary);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('receipt').style.display = 'block';
+            }, 2000);
         });
-      } else {
-        navigator.clipboard.writeText(shareText).then(() => {
-          showNotification("ক্লিপবোর্ডে কপি হয়েছে!", "success");
-        });
-      }
-    }
 
-    // Invoice generation
-    function generateInvoice() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
+        function calculateChanda(profession, salary) {
+            const rate = professionRates[profession] || 0.10;
+            const monthlyChanda = Math.round(salary * rate);
+            const yearlyChanda = monthlyChanda * 12;
 
-      const professionSelect = document.getElementById("profession");
-      const selectedProfession = professionSelect.options[professionSelect.selectedIndex].text;
-      const today = new Date();
-      const dateString = today.toLocaleDateString("bn-BD", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      });
+            // Update results
+            document.getElementById('monthlyIncome').textContent = formatMoney(salary);
+            document.getElementById('chandaRate').textContent = (rate * 100) + '%';
+            document.getElementById('monthlyChanda').textContent = formatMoney(monthlyChanda);
+            document.getElementById('yearlyChanda').textContent = formatMoney(yearlyChanda);
 
-      // Fill invoice modal content
-      const invoiceContent = `
-        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-lg mb-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h4 class="font-bold text-emerald-800 mb-3">ব্যক্তিগত তথ্য</h4>
-              <table class="w-full text-sm">
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">পেশা:</td>
-                  <td class="py-2">${selectedProfession}</td>
-                </tr>
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">মাসিক আয়:</td>
-                  <td class="py-2 font-bold">${formatCurrency(currentCalculation.salary)}</td>
-                </tr>
-                <tr>
-                  <td class="font-semibold py-2 text-emerald-800">তারিখ:</td>
-                  <td class="py-2">${dateString}</td>
-                </tr>
-              </table>
-            </div>
-            <div>
-              <h4 class="font-bold text-emerald-800 mb-3">চাঁদার বিবরণ</h4>
-              <table class="w-full text-sm">
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">দৈনিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.dailyChada)}</td>
-                </tr>
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">সাপ্তাহিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.weeklyChada)}</td>
-                </tr>
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">মাসিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.monthlyChada)}</td>
-                </tr>
-                <tr>
-                  <td class="font-semibold py-2 text-emerald-800">বাৎসরিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.yearlyChada)}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="text-center bg-emerald-600 text-white p-4 rounded-lg mb-4">
-          <p class="font-bold text-xl">মোট বাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}</p>
-          <p class="text-sm opacity-90">আপনার অবদানের জন্য ধন্যবাদ!</p>
-        </div>
-      `;
+            // Update receipt
+            const now = new Date();
+            document.getElementById('receiptDate').textContent = now.toLocaleDateString('bn-BD');
+            document.getElementById('receiptNumber').textContent = 'AWL-' + Date.now().toString().substr(-6);
+            document.getElementById('receiptProfession').textContent = professionNames[profession];
+            document.getElementById('receiptIncome').textContent = formatMoney(salary);
+            document.getElementById('receiptRate').textContent = (rate * 100) + '%';
+            document.getElementById('receiptAmount').textContent = formatMoney(monthlyChanda);
+            document.getElementById('receiptYearlyAmount').textContent = formatMoney(yearlyChanda);
+        }
 
-      document.getElementById("invoice-body").innerHTML = invoiceContent;
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('bn-BD').format(amount) + ' টাকা';
+        }
 
-      // Generate QR code
-      const qrContainer = document.getElementById("invoice-qr");
-      qrContainer.innerHTML = "";
-      const qrText = `পেশা: ${selectedProfession}\nমাসিক চাঁদা: ${formatCurrency(currentCalculation.monthlyChada)}\nবাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}\nতারিখ: ${dateString}`;
-      new QRCode(qrContainer, {
-        text: qrText,
-        width: 128,
-        height: 128,
-        colorDark: "#065f46",
-        colorLight: "#ffffff",
-      });
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
 
-      // Show modal
-      document.getElementById("invoice-modal").classList.remove("hidden");
-      showNotification("রসিদ তৈরি হয়েছে!", "success");
-    }
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add Bengali font support (simplified)
+            doc.setFont('helvetica');
+            doc.setFontSize(16);
+            
+            // Header
+            doc.text('Chanda Receipt - Bangladesh Awami League', 20, 20);
+            doc.setFontSize(12);
+            doc.text('Chanda Receive Hoyeche Sona Bhai', 20, 35);
+            
+            // Receipt details
+            const profession = document.getElementById('receiptProfession').textContent;
+            const income = document.getElementById('receiptIncome').textContent;
+            const rate = document.getElementById('receiptRate').textContent;
+            const amount = document.getElementById('receiptAmount').textContent;
+            const yearlyAmount = document.getElementById('receiptYearlyAmount').textContent;
+            const date = document.getElementById('receiptDate').textContent;
+            const receiptNo = document.getElementById('receiptNumber').textContent;
+            
+            doc.text('Date: ' + date, 20, 55);
+            doc.text('Receipt No: ' + receiptNo, 20, 70);
+            doc.text('Profession: ' + profession, 20, 85);
+            doc.text('Monthly Income: ' + income, 20, 100);
+            doc.text('Chanda Rate: ' + rate, 20, 115);
+            doc.text('Monthly Chanda: ' + amount, 20, 130);
+            doc.text('Yearly Chanda: ' + yearlyAmount, 20, 145);
+            
+            // Footer
+            doc.text('Thank you for your contribution!', 20, 170);
+            doc.text('Tarek Rahman (Khamba Tarek)', 20, 190);
+            doc.text('Senior Vice Chairman, BNP', 20, 205);
+            
+            doc.save('chanda-receipt.pdf');
+            showNotification('PDF ডাউনলোড সফল হয়েছে!', 'success');
+        }
 
-    // Download PDF function
-    function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const invoiceElement = document.getElementById("invoice-content");
+        function downloadJPG() {
+            html2canvas(document.getElementById('receipt')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'chanda-receipt.jpg';
+                link.href = canvas.toDataURL();
+                link.click();
+                showNotification('JPG ডাউনলোড সফল হয়েছে!', 'success');
+            });
+        }
 
-      html2canvas(invoiceElement, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff'
-      }).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`চাঁদা-রসিদ-${Date.now()}.pdf`);
-        showNotification("PDF ডাউনলোড হয়েছে!", "success");
-      });
-    }
+        function printReceipt() {
+            const printWindow = window.open('', '_blank');
+            const receiptHTML = document.getElementById('receipt').outerHTML;
+            
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>চাঁদার রসিদ</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; }
+                        .receipt { max-width: 600px; margin: 0 auto; }
+                        .receipt-header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 20px; }
+                        .receipt-title { font-size: 1.8rem; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+                        .receipt-subtitle { font-size: 1.2rem; color: #27ae60; font-weight: bold; margin-bottom: 10px; }
+                        .receipt-row { display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 0; border-bottom: 1px dotted #ccc; }
+                        .receipt-footer { text-align: center; border-top: 2px solid #333; padding-top: 20px; margin-top: 30px; }
+                        .signature-section { margin-top: 30px; text-align: center; }
+                        .signature-img { max-width: 200px; height: auto; margin: 10px 0; }
+                        .signature-name { font-weight: bold; font-size: 1.1rem; color: #2c3e50; }
+                        .download-buttons { display: none; }
+                    </style>
+                </head>
+                <body>${receiptHTML}</body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.print();
+            showNotification('প্রিন্ট সফল হয়েছে!', 'success');
+        }
 
-    // Download JPG function
-    function downloadJPG() {
-      const invoiceElement = document.getElementById("invoice-content");
-      
-      html2canvas(invoiceElement, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff'
-      }).then((canvas) => {
-        const link = document.createElement('a');
-        link.download = `চাঁদা-রসিদ-${Date.now()}.jpg`;
-        link.href = canvas.toDataURL('image/jpeg', 0.9);
-        link.click();
-        showNotification("JPG ডাউনলোড হয়েছে!", "success");
-      });
-    }
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#2ecc71' : '#e74c3c'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                font-weight: bold;
+                z-index: 10000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
 
-    // Print invoice function
-    function printInvoice() {
-      const invoiceContent = document.getElementById("invoice-content").innerHTML;
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write(`
-        <html>
-          <head>
-            <title>চাঁদা রসিদ</title>
-            <style>
-              body { font-family: 'Arial', sans-serif; margin: 20px; }
-            </style>
-          </head>
-          <body>${invoiceContent}</body>
-        </html>
-      `);
-      printWindow.document.close();
-      printWindow.print();
-      showNotification("প্রিন্ট ডায়ালগ খোলা হয়েছে!", "success");
-    }
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
 
-    // Advanced features
-    function showTrendAnalysis() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
-      
-      const trendModal = document.getElementById('trend-analysis-modal');
-      const trendContent = document.getElementById('trend-analysis-content');
-      
-      // Generate sample trend data
-      const months = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন'];
-      const data = months.map(() => currentCalculation.monthlyChada * (0.8 + Math.random() * 0.4));
-      
-      trendContent.innerHTML = `
-        <div class="mb-4">
-          <canvas id="trend-chart" style="height: 300px;"></canvas>
-        </div>
-        <div class="text-center">
-          <p class="text-sm text-gray-600">গত ৬ মাসের চাঁদার ট্রেন্ড</p>
-          <p class="font-bold text-emerald-800">গড় মাসিক চাঁদা: ${formatCurrency(data.reduce((a, b) => a + b) / data.length)}</p>
-        </div>
-      `;
-      
-      setTimeout(() => {
-        new Chart(document.getElementById('trend-chart').getContext('2d'), {
-          type: 'line',
-          data: {
-            labels: months,
-            datasets: [{
-              label: 'মাসিক চাঁদা',
-              data: data,
-              borderColor: '#10b981',
-              backgroundColor: 'rgba(16, 185, 129, 0.1)',
-              tension: 0.1,
-              fill: true
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } }
-          }
-        });
-      }, 100);
-      
-      trendModal.classList.remove('hidden');
-    }
+        function showTrendAnalysis() {
+            alert('📈 ট্রেন্ড এনালাইসিস: গত ৬ মাসে চাঁদা সংগ্রহ ২৫% বৃদ্ধি পেয়েছে!');
+            toggleMenu();
+        }
 
-    function showComparison() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
-      
-      const comparisonModal = document.getElementById('comparison-modal');
-      const comparisonContent = document.getElementById('comparison-content');
-      
-      const avgChada = currentCalculation.monthlyChada * 1.2;
-      const percentDiff = ((currentCalculation.monthlyChada - avgChada) / avgChada * 100).toFixed(1);
-      
-      comparisonContent.innerHTML = `
-        <div class="space-y-4">
-          <div class="bg-emerald-50 p-4 rounded-lg">
-            <h4 class="font-bold text-emerald-800 mb-2">আপনার চাঁদা</h4>
-            <p class="text-2xl font-bold text-emerald-600">${formatCurrency(currentCalculation.monthlyChada)}</p>
-          </div>
-          <div class="bg-blue-50 p-4 rounded-lg">
-            <h4 class="font-bold text-blue-800 mb-2">গড় চাঁদা</h4>
-            <p class="text-2xl font-bold text-blue-600">${formatCurrency(avgChada)}</p>
-          </div>
-          <div class="bg-gray-50 p-4 rounded-lg text-center">
-            <p class="font-bold text-lg">
-              আপনি গড় থেকে 
-              <span class="${currentCalculation.monthlyChada > avgChada ? 'text-green-600' : 'text-red-600'}">
-                ${Math.abs(percentDiff)}% ${currentCalculation.monthlyChada > avgChada ? 'বেশি' : 'কম'}
-              </span> 
-              দিচ্ছেন
-            </p>
-          </div>
-        </div>
-      `;
-      
-      comparisonModal.classList.remove('hidden');
-    }
+        function showComparison() {
+            alert('📊 তুলনামূলক বিশ্লেষণ: আপনার পেশার গড় চাঁদা থেকে আপনি এগিয়ে আছেন!');
+            toggleMenu();
+        }
 
-    function showLeaderboard() {
-      const leaderboardModal = document.getElementById('leaderboard-modal');
-      const leaderboardContent = document.getElementById('leaderboard-content');
-      
-      const leaderboardData = [
-        { name: 'বিপ্লবী আহমেদ', chada: 25000, profession: 'ব্যবসায়ী' },
-        { name: 'বিপ্লবী রহিম', chada: 22000, profession: 'ডাক্তার' },
-        { name: 'বিপ্লবী করিম', chada: 20000, profession: 'ইঞ্জিনিয়ার' },
-        { name: 'বিপ্লবী সালাম', chada: 18000, profession: 'শিক্ষক' },
-        { name: 'বিপ্লবী জামাল', chada: 15000, profession: 'চাকুরিজীবী' },
-      ];
-      
-      leaderboardContent.innerHTML = `
-        <div class="space-y-2">
-          ${leaderboardData.map((user, i) => `
-            <div class="flex justify-between items-center p-3 ${i % 2 === 0 ? 'bg-emerald-50' : 'bg-gray-50'} rounded-lg">
-              <div class="flex items-center gap-3">
-                <span class="font-bold text-lg ${i < 3 ? 'text-yellow-600' : 'text-gray-600'}">${i+1}</span>
-                <div>
-                  <p class="font-semibold">${user.name}</p>
-                  <p class="text-sm text-gray-600">${user.profession}</p>
-                </div>
-              </div>
-              <div class="text-right">
-                <p class="font-bold text-emerald-600">${formatCurrency(user.chada)}</p>
-                <p class="text-xs text-gray-500">মাসিক</p>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-        <div class="mt-4 text-center text-sm text-gray-600">
-          <p>আপনার অবস্থান নির্ভর করে আপনার চাঁদার উপর</p>
-        </div>
-      `;
-      
-      leaderboardModal.classList.remove('hidden');
-    }
+        function showLeaderboard() {
+            alert('🏆 লিডারবোর্ড: আপনি এই মাসে টপ ১০ কন্ট্রিবিউটরের মধ্যে আছেন!');
+            toggleMenu();
+        }
 
-    // Event listeners
-    document.getElementById("calculate-btn").addEventListener("click", calculateChada);
-    document.getElementById("generate-invoice-btn").addEventListener("click", generateInvoice);
-    document.getElementById("share-result-btn").addEventListener("click", shareResult);
-    document.getElementById("download-pdf-btn").addEventListener("click", downloadPDF);
-    document.getElementById("download-jpg-btn").addEventListener("click", downloadJPG);
-    document.getElementById("print-invoice-btn").addEventListener("click", printInvoice);
-    document.getElementById("close-invoice-btn").addEventListener("click", () => document.getElementById("invoice-modal").classList.add("hidden"));
-    document.getElementById("trend-analysis-btn").addEventListener("click", showTrendAnalysis);
-    document.getElementById("comparison-btn").addEventListener("click", showComparison);
-    document.getElementById("leaderboard-btn").addEventListener("click", showLeaderboard);
-    document.getElementById("close-leaderboard-btn").addEventListener("click", () => document.getElementById('leaderboard-modal').classList.add('hidden'));
-    document.getElementById("close-comparison-btn").addEventListener("click", () => document.getElementById('comparison-modal').classList.add('hidden'));
-    document.getElementById("close-trend-analysis-btn").addEventListener("click", () => document.getElementById('trend-analysis-modal').classList.add('hidden'));
-
-    // Close modals on ESC key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        document.getElementById("invoice-modal").classList.add("hidden");
-        document.getElementById('leaderboard-modal').classList.add('hidden');
-        document.getElementById('comparison-modal').classList.add('hidden');
-        document.getElementById('trend-analysis-modal').classList.add('hidden');
-      }
-    });
-
-    // Initialize
-    showNotification("স্বাগতম! চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
-  </script>
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
 
