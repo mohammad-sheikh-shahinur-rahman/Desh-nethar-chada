@@ -3,146 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>দেশনেতার চাঁদা ক্যালকুলেটর - প্রো আল্টিমেট সংস্করণ</title>
+  <title>দেশনেতার চাঁদা ক্যালকুলেটর - সম্পূর্ণ সংস্করণ</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'bounce-slow': 'bounce 2s infinite',
-            'gradient': 'gradient 15s ease infinite',
-            'slide-up': 'slideUp 0.5s ease-out',
-            'fade-in': 'fadeIn 0.8s ease-out',
-            'scale-in': 'scaleIn 0.6s ease-out',
-            'wiggle': 'wiggle 1s ease-in-out infinite',
-            'glow': 'glow 2s ease-in-out infinite alternate',
-            'typing': 'typing 3.5s steps(40, end), blink-caret .75s step-end infinite',
-            'matrix': 'matrix 20s linear infinite',
-            'neon-pulse': 'neonPulse 2s ease-in-out infinite alternate',
-            'hologram': 'hologram 3s ease-in-out infinite',
-            'cyber-glitch': 'cyberGlitch 0.3s ease-in-out infinite',
-            'rainbow': 'rainbow 3s linear infinite',
-            'levitate': 'levitate 4s ease-in-out infinite',
-            'sparkle': 'sparkle 1.5s ease-in-out infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-20px)' },
-            },
-            gradient: {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
-            },
-            slideUp: {
-              '0%': { transform: 'translateY(100px)', opacity: '0' },
-              '100%': { transform: 'translateY(0)', opacity: '1' },
-            },
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
-            scaleIn: {
-              '0%': { transform: 'scale(0.8)', opacity: '0' },
-              '100%': { transform: 'scale(1)', opacity: '1' },
-            },
-            wiggle: {
-              '0%, 100%': { transform: 'rotate(-3deg)' },
-              '50%': { transform: 'rotate(3deg)' },
-            },
-            glow: {
-              '0%': { boxShadow: '0 0 5px #10b981, 0 0 10px #10b981, 0 0 15px #10b981' },
-              '100%': { boxShadow: '0 0 10px #10b981, 0 0 20px #10b981, 0 0 30px #10b981' },
-            },
-            typing: {
-              'from': { width: '0' },
-              'to': { width: '100%' },
-            },
-            'blink-caret': {
-              'from, to': { borderColor: 'transparent' },
-              '50%': { borderColor: '#10b981' },
-            },
-            matrix: {
-              '0%': { transform: 'translateY(-100vh)' },
-              '100%': { transform: 'translateY(100vh)' },
-            },
-            neonPulse: {
-              '0%': { 
-                textShadow: '0 0 5px #10b981, 0 0 10px #10b981, 0 0 15px #10b981, 0 0 20px #10b981',
-                filter: 'hue-rotate(0deg)'
-              },
-              '100%': { 
-                textShadow: '0 0 10px #10b981, 0 0 20px #10b981, 0 0 30px #10b981, 0 0 40px #10b981',
-                filter: 'hue-rotate(90deg)'
-              },
-            },
-            hologram: {
-              '0%, 100%': { 
-                transform: 'rotateY(0deg) rotateX(0deg)',
-                filter: 'hue-rotate(0deg) brightness(1)'
-              },
-              '25%': { 
-                transform: 'rotateY(5deg) rotateX(2deg)',
-                filter: 'hue-rotate(90deg) brightness(1.2)'
-              },
-              '50%': { 
-                transform: 'rotateY(0deg) rotateX(5deg)',
-                filter: 'hue-rotate(180deg) brightness(0.8)'
-              },
-              '75%': { 
-                transform: 'rotateY(-5deg) rotateX(2deg)',
-                filter: 'hue-rotate(270deg) brightness(1.1)'
-              },
-            },
-            cyberGlitch: {
-              '0%, 100%': { transform: 'translate(0)' },
-              '20%': { transform: 'translate(-2px, 2px)' },
-              '40%': { transform: 'translate(-2px, -2px)' },
-              '60%': { transform: 'translate(2px, 2px)' },
-              '80%': { transform: 'translate(2px, -2px)' },
-            },
-            rainbow: {
-              '0%': { filter: 'hue-rotate(0deg)' },
-              '100%': { filter: 'hue-rotate(360deg)' },
-            },
-            levitate: {
-              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-              '50%': { transform: 'translateY(-30px) rotate(5deg)' },
-            },
-            sparkle: {
-              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-              '50%': { opacity: '0.5', transform: 'scale(1.2)' },
-            },
-          },
-          backgroundSize: {
-            '400%': '400% 400%',
-          },
-          fontFamily: {
-            'cyber': ['Orbitron', 'monospace'],
-            'neon': ['Audiowide', 'cursive'],
-          },
-        }
-      }
-    }
-  </script>
 
   <!-- FontAwesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Audiowide&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -156,69 +26,18 @@
   <!-- QRCode.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-  <!-- Confetti.js -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- Three.js for 3D effects -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <!-- GSAP for advanced animations -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
   <style>
-    :root {
-      --primary-color: #10b981;
-      --secondary-color: #059669;
-      --accent-color: #34d399;
-      --neon-green: #00ff88;
-      --neon-blue: #00aaff;
-      --neon-purple: #aa00ff;
-      --cyber-orange: #ff6600;
-      --dark-bg: #0f172a;
-      --dark-card: #1e293b;
-      --light-bg: #f8fafc;
-      --light-card: #ffffff;
-    }
-
     body {
-      font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #d7f3e3, #a7d7f9, #fef3c7, #fce7f3, #e0e7ff, #c7d2fe, #ddd6fe);
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: linear-gradient(-45deg, #d7f3e3, #a7d7f9, #fef3c7, #fce7f3);
       background-size: 400% 400%;
       animation: gradient 15s ease infinite;
       color: #064e3b;
-      transition: all 0.5s ease;
-      overflow-x: hidden;
-      position: relative;
-    }
-    
-    body.dark {
-      background: linear-gradient(-45deg, #1e293b, #0f172a, #374151, #1f2937, #312e81, #1e1b4b, #581c87);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      color: #f1f5f9;
     }
 
-    body.cyber {
-      background: linear-gradient(-45deg, #000011, #001122, #002233, #003344, #004455);
-      background-size: 400% 400%;
-      animation: gradient 20s ease infinite;
-      color: var(--neon-green);
-      font-family: 'Orbitron', monospace;
-    }
-
-    body.neon {
-      background: radial-gradient(circle at center, #000033, #000066, #000099, #0000cc);
-      background-size: 400% 400%;
-      animation: gradient 25s ease infinite;
-      color: var(--neon-blue);
-      font-family: 'Audiowide', cursive;
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .glass-effect {
@@ -227,195 +46,29 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
-    
-    body.dark .glass-effect {
-      background: rgba(30, 41, 59, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    body.cyber .glass-effect {
-      background: rgba(0, 255, 136, 0.1);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--neon-green);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-    }
-
-    body.neon .glass-effect {
-      background: rgba(0, 170, 255, 0.1);
-      backdrop-filter: blur(15px);
-      border: 1px solid var(--neon-blue);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
-    }
-
-    .main-container {
-      max-width: 1200px;
-      margin: 8rem auto 3rem;
-      padding: 3rem;
-      border-radius: 2rem;
-      position: relative;
-      z-index: 10;
-    }
 
     .result-card {
-      background: rgba(240, 253, 244, 0.6);
+      background: rgba(240, 253, 244, 0.8);
       backdrop-filter: blur(15px);
       border: 1px solid rgba(34, 197, 94, 0.2);
       box-shadow: 0 10px 40px rgba(34, 197, 94, 0.1);
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .result-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .result-card:hover::before {
-      left: 100%;
-    }
-
-    body.dark .result-card {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    body.cyber .result-card {
-      background: rgba(0, 255, 136, 0.05);
-      border: 1px solid var(--neon-green);
-      box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
-    }
-
-    body.neon .result-card {
-      background: rgba(0, 170, 255, 0.05);
-      border: 1px solid var(--neon-blue);
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.2);
     }
 
     .result-card:hover {
-      transform: translateY(-5px) scale(1.02);
+      transform: translateY(-5px);
       box-shadow: 0 20px 60px rgba(34, 197, 94, 0.2);
-    }
-
-    body.dark .result-card:hover {
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    }
-
-    body.cyber .result-card:hover {
-      box-shadow: 0 0 50px rgba(0, 255, 136, 0.4);
-      animation: cyber-glitch 0.3s ease-in-out;
-    }
-
-    body.neon .result-card:hover {
-      box-shadow: 0 0 50px rgba(0, 170, 255, 0.4);
-      animation: neon-pulse 1s ease-in-out;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #10b981, #059669);
       box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn-primary:hover::before {
-      left: 100%;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px) scale(1.05);
+      transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
-    }
-
-    body.cyber .btn-primary {
-      background: linear-gradient(135deg, var(--neon-green), #00cc66);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-      border: 1px solid var(--neon-green);
-    }
-
-    body.cyber .btn-primary:hover {
-      box-shadow: 0 0 40px rgba(0, 255, 136, 0.8);
-      animation: cyber-glitch 0.2s ease-in-out;
-    }
-
-    body.neon .btn-primary {
-      background: linear-gradient(135deg, var(--neon-blue), #0088cc);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
-      border: 1px solid var(--neon-blue);
-    }
-
-    body.neon .btn-primary:hover {
-      box-shadow: 0 0 40px rgba(0, 170, 255, 0.8);
-      animation: neon-pulse 0.5s ease-in-out;
-    }
-
-    .btn-secondary {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
-    }
-
-    .floating-icon {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    body.cyber .floating-icon {
-      animation: levitate 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px var(--neon-green));
-    }
-
-    body.neon .floating-icon {
-      animation: hologram 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px var(--neon-blue));
-    }
-
-    .pulse-ring {
-      animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    .header-glass {
-      background: rgba(5, 46, 22, 0.9);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    body.cyber .header-glass {
-      background: rgba(0, 17, 17, 0.9);
-      border-bottom: 1px solid var(--neon-green);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-    }
-
-    body.neon .header-glass {
-      background: rgba(0, 0, 51, 0.9);
-      border-bottom: 1px solid var(--neon-blue);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
     }
 
     .input-field {
@@ -429,173 +82,6 @@
       border-color: #10b981;
       box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
       background: rgba(255, 255, 255, 1);
-      transform: scale(1.02);
-    }
-
-    body.dark .input-field {
-      background: rgba(30, 41, 59, 0.8);
-      color: #f1f5f9;
-      border-color: rgba(148, 163, 184, 0.3);
-    }
-
-    body.dark .input-field:focus {
-      background: rgba(30, 41, 59, 1);
-      border-color: #10b981;
-    }
-
-    body.cyber .input-field {
-      background: rgba(0, 17, 17, 0.8);
-      color: var(--neon-green);
-      border: 2px solid var(--neon-green);
-      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-    }
-
-    body.cyber .input-field:focus {
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
-      animation: cyber-glitch 0.1s ease-in-out;
-    }
-
-    body.neon .input-field {
-      background: rgba(0, 0, 51, 0.8);
-      color: var(--neon-blue);
-      border: 2px solid var(--neon-blue);
-      box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
-    }
-
-    body.neon .input-field:focus {
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
-      animation: neon-pulse 0.5s ease-in-out;
-    }
-
-    .particles-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .matrix-rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.1;
-    }
-
-    .matrix-char {
-      position: absolute;
-      color: var(--neon-green);
-      font-family: 'Orbitron', monospace;
-      font-size: 14px;
-      animation: matrix 20s linear infinite;
-    }
-
-    .social-icon {
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .social-icon:hover {
-      transform: scale(1.2) rotate(10deg);
-    }
-
-    body.cyber .social-icon:hover {
-      filter: drop-shadow(0 0 10px var(--neon-green));
-      animation: cyber-glitch 0.2s ease-in-out;
-    }
-
-    body.neon .social-icon:hover {
-      filter: drop-shadow(0 0 15px var(--neon-blue));
-      animation: neon-pulse 0.5s ease-in-out;
-    }
-
-    .theme-toggle {
-      position: relative;
-      width: 120px;
-      height: 40px;
-      background: #374151;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 0 5px;
-    }
-
-    .theme-toggle.active {
-      background: #10b981;
-    }
-
-    .theme-toggle.cyber {
-      background: var(--neon-green);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-    }
-
-    .theme-toggle.neon {
-      background: var(--neon-blue);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
-    }
-
-    .theme-toggle-dot {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 34px;
-      height: 34px;
-      background: white;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
-
-    .theme-toggle.light .theme-toggle-dot {
-      transform: translateX(0px);
-    }
-
-    .theme-toggle.dark .theme-toggle-dot {
-      transform: translateX(40px);
-    }
-
-    .theme-toggle.cyber .theme-toggle-dot {
-      transform: translateX(80px);
-      background: #000;
-      color: var(--neon-green);
-    }
-
-    .chart-container {
-      position: relative;
-      height: 350px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      padding: 1rem;
-    }
-
-    body.dark .chart-container {
-      background: rgba(30, 41, 59, 0.3);
-    }
-
-    body.cyber .chart-container {
-      background: rgba(0, 255, 136, 0.05);
-      border: 1px solid var(--neon-green);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-    }
-
-    body.neon .chart-container {
-      background: rgba(0, 170, 255, 0.05);
-      border: 1px solid var(--neon-blue);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
     }
 
     .modal-backdrop {
@@ -607,51 +93,6 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    body.dark .modal-content {
-      background: rgba(30, 41, 59, 0.95);
-      color: #f1f5f9;
-    }
-
-    body.cyber .modal-content {
-      background: rgba(0, 17, 17, 0.95);
-      color: var(--neon-green);
-      border: 1px solid var(--neon-green);
-      box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
-    }
-
-    body.neon .modal-content {
-      background: rgba(0, 0, 51, 0.95);
-      color: var(--neon-blue);
-      border: 1px solid var(--neon-blue);
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.3);
-    }
-
-    .loading-spinner {
-      border: 4px solid rgba(16, 185, 129, 0.3);
-      border-top: 4px solid #10b981;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-    }
-
-    body.cyber .loading-spinner {
-      border: 4px solid rgba(0, 255, 136, 0.3);
-      border-top: 4px solid var(--neon-green);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-    }
-
-    body.neon .loading-spinner {
-      border: 4px solid rgba(0, 170, 255, 0.3);
-      border-top: 4px solid var(--neon-blue);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
 
     .notification {
@@ -684,423 +125,58 @@
       background: linear-gradient(135deg, #3b82f6, #2563eb);
     }
 
-    body.cyber .notification.success {
-      background: linear-gradient(135deg, var(--neon-green), #00cc66);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-    }
-
-    body.neon .notification.success {
-      background: linear-gradient(135deg, var(--neon-blue), #0088cc);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
-    }
-
-    .stats-card {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .stats-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
-    }
-
-    body.cyber .stats-card {
-      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 102, 0.1));
-      border: 1px solid var(--neon-green);
-    }
-
-    body.cyber .stats-card:hover {
-      box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
-      animation: cyber-glitch 0.1s ease-in-out;
-    }
-
-    body.neon .stats-card {
-      background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), rgba(0, 136, 204, 0.1));
-      border: 1px solid var(--neon-blue);
-    }
-
-    body.neon .stats-card:hover {
-      box-shadow: 0 0 25px rgba(0, 170, 255, 0.3);
-      animation: neon-pulse 0.5s ease-in-out;
-    }
-
-    .typing-text {
-      overflow: hidden;
-      border-right: .15em solid #10b981;
-      white-space: nowrap;
-      margin: 0 auto;
-      letter-spacing: .15em;
-      animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-    }
-
-    body.cyber .typing-text {
-      border-right-color: var(--neon-green);
-      text-shadow: 0 0 10px var(--neon-green);
-    }
-
-    body.neon .typing-text {
-      border-right-color: var(--neon-blue);
-      text-shadow: 0 0 10px var(--neon-blue);
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    }
-
-    body.dark .feature-card {
-      background: rgba(30, 41, 59, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    body.cyber .feature-card {
-      background: rgba(0, 255, 136, 0.05);
-      border: 1px solid var(--neon-green);
-      box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-    }
-
-    body.cyber .feature-card:hover {
-      box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
-      animation: cyber-glitch 0.2s ease-in-out;
-    }
-
-    body.neon .feature-card {
-      background: rgba(0, 170, 255, 0.05);
-      border: 1px solid var(--neon-blue);
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.2);
-    }
-
-    body.neon .feature-card:hover {
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
-      animation: neon-pulse 0.5s ease-in-out;
-    }
-
-    .progress-bar {
-      background: linear-gradient(90deg, #10b981, #34d399);
-      height: 4px;
-      border-radius: 2px;
-      transition: width 0.5s ease;
-    }
-
-    body.cyber .progress-bar {
-      background: linear-gradient(90deg, var(--neon-green), #00ff88);
-      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-    }
-
-    body.neon .progress-bar {
-      background: linear-gradient(90deg, var(--neon-blue), #00aaff);
-      box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
-    }
-
-    .calculator-history {
-      max-height: 200px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #10b981 transparent;
-    }
-
-    .calculator-history::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .calculator-history::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .calculator-history::-webkit-scrollbar-thumb {
-      background-color: #10b981;
-      border-radius: 3px;
-    }
-
-    body.cyber .calculator-history::-webkit-scrollbar-thumb {
-      background-color: var(--neon-green);
-      box-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
-    }
-
-    body.neon .calculator-history::-webkit-scrollbar-thumb {
-      background-color: var(--neon-blue);
-      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
-    }
-
-    .voice-wave {
-      display: inline-block;
-      width: 4px;
-      height: 20px;
-      background: #10b981;
-      margin: 0 1px;
-      border-radius: 2px;
-      animation: wave 1s ease-in-out infinite;
-    }
-
-    .voice-wave:nth-child(2) { animation-delay: 0.1s; }
-    .voice-wave:nth-child(3) { animation-delay: 0.2s; }
-    .voice-wave:nth-child(4) { animation-delay: 0.3s; }
-    .voice-wave:nth-child(5) { animation-delay: 0.4s; }
-
-    @keyframes wave {
-      0%, 100% { height: 20px; }
-      50% { height: 40px; }
-    }
-
-    body.cyber .voice-wave {
-      background: var(--neon-green);
-      box-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
-    }
-
-    body.neon .voice-wave {
-      background: var(--neon-blue);
-      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #ffd700;
+    .loading-spinner {
+      border: 4px solid rgba(16, 185, 129, 0.3);
+      border-top: 4px solid #10b981;
       border-radius: 50%;
-      animation: sparkle 1.5s ease-in-out infinite;
-    }
-
-    .sparkle:nth-child(odd) {
-      animation-delay: 0.5s;
-    }
-
-    @media (max-width: 768px) {
-      .main-container {
-        margin: 6rem auto 2rem;
-        padding: 1.5rem;
-      }
-      
-      .header-title {
-        font-size: 1.2rem;
-      }
-      
-      .social-icons {
-        gap: 0.5rem;
-      }
-
-      .chart-container {
-        height: 250px;
-      }
-
-      .theme-toggle {
-        width: 100px;
-        height: 35px;
-      }
-
-      .theme-toggle-dot {
-        width: 29px;
-        height: 29px;
-      }
-
-      .theme-toggle.dark .theme-toggle-dot {
-        transform: translateX(35px);
-      }
-
-      .theme-toggle.cyber .theme-toggle-dot {
-        transform: translateX(65px);
-      }
-    }
-
-    .glow-effect {
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    .wiggle-effect {
-      animation: wiggle 1s ease-in-out infinite;
-    }
-
-    .rainbow-effect {
-      animation: rainbow 3s linear infinite;
-    }
-
-    .invoice-template {
-      background: white;
-      color: #1f2937;
-      font-family: 'Noto Sans Bengali', sans-serif;
-    }
-
-    body.cyber .invoice-template {
-      background: #000011;
-      color: var(--neon-green);
-      border: 1px solid var(--neon-green);
-    }
-
-    body.neon .invoice-template {
-      background: #000033;
-      color: var(--neon-blue);
-      border: 1px solid var(--neon-blue);
-    }
-
-    .holographic-text {
-      background: linear-gradient(45deg, #ff0080, #00ff80, #8000ff, #ff8000);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradient 3s ease infinite;
-    }
-
-    .cyber-grid {
-      background-image: 
-        linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    .neon-grid {
-      background-image: 
-        linear-gradient(rgba(0, 170, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 170, 255, 0.1) 1px, transparent 1px);
-      background-size: 25px 25px;
-    }
-
-    .audio-visualizer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
+      width: 40px;
       height: 40px;
+      animation: spin 1s linear infinite;
     }
 
-    .audio-bar {
-      width: 3px;
-      background: #10b981;
-      border-radius: 2px;
-      animation: audioWave 1s ease-in-out infinite;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .audio-bar:nth-child(1) { height: 10px; animation-delay: 0s; }
-    .audio-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
-    .audio-bar:nth-child(3) { height: 30px; animation-delay: 0.2s; }
-    .audio-bar:nth-child(4) { height: 25px; animation-delay: 0.3s; }
-    .audio-bar:nth-child(5) { height: 15px; animation-delay: 0.4s; }
-    .audio-bar:nth-child(6) { height: 35px; animation-delay: 0.5s; }
-    .audio-bar:nth-child(7) { height: 20px; animation-delay: 0.6s; }
-    .audio-bar:nth-child(8) { height: 25px; animation-delay: 0.7s; }
-
-    @keyframes audioWave {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(2); }
-    }
-
-    body.cyber .audio-bar {
-      background: var(--neon-green);
-      box-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
-    }
-
-    body.neon .audio-bar {
-      background: var(--neon-blue);
-      box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+    .chart-container {
+      position: relative;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1rem;
     }
   </style>
 </head>
 <body>
-  <!-- Matrix Rain Effect (for cyber theme) -->
-  <div id="matrix-rain" class="matrix-rain hidden"></div>
-
-  <!-- Particles Background -->
-  <div id="particles-js" class="particles-container"></div>
-
-  <!-- Sparkles -->
-  <div id="sparkles-container" class="fixed inset-0 pointer-events-none z-5"></div>
-
   <!-- Header -->
-  <header class="fixed w-full top-0 z-50 header-glass text-emerald-100 shadow-2xl p-4">
+  <header class="fixed w-full top-0 z-50 glass-effect text-emerald-800 shadow-2xl p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="floating-icon">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg"
-            alt="BNP"
-            class="w-12 h-12 filter drop-shadow-lg"
-          />
-        </div>
-        <h1 class="header-title text-xl font-bold bg-gradient-to-r from-emerald-200 to-emerald-400 bg-clip-text text-transparent">
-          দেশনেতার চাঁদা ক্যালকুলেটর
-        </h1>
-      </div>
-      <div class="flex items-center gap-4">
-        <div class="social-icons flex gap-3">
-          <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="social-icon">
-            <i class="fab fa-facebook text-xl text-emerald-200 hover:text-white"></i>
-          </a>
-          <a href="https://twitter.com" target="_blank" aria-label="Twitter" class="social-icon">
-            <i class="fab fa-twitter text-xl text-emerald-200 hover:text-white"></i>
-          </a>
-          <a href="https://youtube.com" target="_blank" aria-label="YouTube" class="social-icon">
-            <i class="fab fa-youtube text-xl text-emerald-200 hover:text-white"></i>
-          </a>
-        </div>
-        <div class="theme-toggle light" id="themeToggle">
-          <div class="theme-toggle-dot">🌞</div>
-        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-12 h-12" />
+        <h1 class="text-xl font-bold">দেশনেতার চাঁদা ক্যালকুলেটর</h1>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="main-container glass-effect animate-fade-in" role="main" aria-label="Main content">
+  <main class="max-w-4xl mx-auto mt-24 p-6 glass-effect rounded-2xl">
     <!-- Hero Section -->
-    <div class="text-center mb-8" data-aos="fade-up">
-      <div class="floating-icon mb-4 relative">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg"
-          class="w-32 h-32 mx-auto filter drop-shadow-2xl glow-effect"
-          alt="BNP Election Symbol"
-        />
-        <!-- Sparkles around the logo -->
-        <div class="sparkle" style="top: 10%; left: 20%;"></div>
-        <div class="sparkle" style="top: 20%; right: 15%;"></div>
-        <div class="sparkle" style="bottom: 25%; left: 10%;"></div>
-        <div class="sparkle" style="bottom: 15%; right: 20%;"></div>
-      </div>
-      <h2 class="text-5xl font-bold text-emerald-800 mb-3 animate-scale-in holographic-text">
-        দেশনেতার চাঁদা ক্যালকুলেটর
-      </h2>
-      <p class="text-xl italic text-emerald-700 font-medium typing-text mb-4">
-        "আপনার আত্মত্যাগ, আমাদের পরবর্তী বাজেট।"
-      </p>
-      <div class="flex justify-center items-center gap-2 mb-4">
-        <div class="pulse-ring w-4 h-4 bg-emerald-500 rounded-full"></div>
-        <span class="text-emerald-600 font-semibold rainbow-effect">প্রো আল্টিমেট সংস্করণ</span>
-        <div class="pulse-ring w-4 h-4 bg-emerald-500 rounded-full"></div>
-      </div>
-      
-      <!-- Audio Visualizer -->
-      <div class="audio-visualizer mb-4">
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-      </div>
+    <div class="text-center mb-8">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" class="w-32 h-32 mx-auto mb-4" alt="BNP" />
+      <h2 class="text-4xl font-bold text-emerald-800 mb-3">দেশনেতার চাঁদা ক্যালকুলেটর</h2>
+      <p class="text-xl italic text-emerald-700 font-medium">"আপনার আত্মত্যাগ, আমাদের পরবর্তী বাজেট।"</p>
     </div>
 
     <!-- Calculator Form -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8" data-aos="fade-up" data-aos-delay="200">
-      <div class="animate-slide-up">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div>
         <label for="profession" class="font-semibold block mb-3 text-lg">
           <i class="fas fa-briefcase mr-2 text-emerald-600"></i>
           আপনার পেশা
         </label>
-        <select
-          id="profession"
-          class="input-field w-full p-4 rounded-xl text-lg font-medium"
-          aria-required="true"
-          aria-describedby="error-message"
-        >
+        <select id="profession" class="input-field w-full p-4 rounded-xl text-lg font-medium">
           <option selected disabled>--পেশা নির্বাচন করুন--</option>
           <option value="doctor">👨‍⚕️ ডাক্তার</option>
           <option value="engineer">👨‍💻 ইঞ্জিনিয়ার</option>
@@ -1112,52 +188,33 @@
           <option value="day_laborer">👷 দিনমজুর</option>
           <option value="unemployed">😔 বেকার</option>
           <option value="expatriate_worker">✈️ প্রবাসী কর্মী</option>
-          <option value="it_professional">💻 আইটি কর্মী</option>
-          <option value="employee">👔 চাকুরিজীবী</option>
-          <option value="student">🎓 ছাত্র</option>
-          <option value="freedom_fighter">🇧🇩 মুক্তিযোদ্ধা</option>
-          <option value="farmer">🌾 কৃষক</option>
-          <option value="artist">🎨 শিল্পী</option>
-          <option value="driver">🚗 ড্রাইভার</option>
         </select>
       </div>
-      <div class="animate-slide-up" style="animation-delay: 0.2s;">
+      <div>
         <label for="salary" class="font-semibold block mb-3 text-lg">
           <i class="fas fa-money-bill-wave mr-2 text-emerald-600"></i>
           মাসিক আয় (৳)
         </label>
-        <input
-          type="number"
-          id="salary"
-          placeholder="৳ টাকার পরিমাণ লিখুন..."
-          class="input-field w-full p-4 rounded-xl text-lg font-medium"
-          min="0"
-          aria-required="true"
-          aria-describedby="error-message"
-        />
+        <input type="number" id="salary" placeholder="৳ টাকার পরিমাণ লিখুন..." class="input-field w-full p-4 rounded-xl text-lg font-medium" min="0" />
       </div>
     </div>
 
     <!-- Error Message -->
-    <div id="error-message" class="text-red-600 font-semibold text-center mb-4 hidden" role="alert">
+    <div id="error-message" class="text-red-600 font-semibold text-center mb-4 hidden">
       <i class="fas fa-exclamation-triangle mr-2"></i>
       <span id="error-text"></span>
     </div>
 
     <!-- Calculate Button -->
-    <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="400">
-      <button
-        id="calculate-btn"
-        class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-        aria-label="চাঁদা হিসাব করুন"
-      >
+    <div class="text-center mb-8">
+      <button id="calculate-btn" class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
         <i class="fas fa-calculator mr-2"></i>
         হিসাব দেখুন
       </button>
     </div>
 
     <!-- Loader -->
-    <div id="loader" class="text-center mb-8 hidden" aria-live="polite" aria-busy="true">
+    <div id="loader" class="text-center mb-8 hidden">
       <div class="loading-spinner mx-auto mb-4"></div>
       <p class="text-emerald-700 font-semibold text-lg">
         <i class="fas fa-cog fa-spin mr-2"></i>
@@ -1166,20 +223,19 @@
     </div>
 
     <!-- Results Section -->
-    <section id="result-container" class="hidden" aria-live="polite" aria-atomic="true">
-      <!-- Main Results Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8" data-aos="fade-up">
+    <section id="result-container" class="hidden">
+      <!-- Main Results -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div class="result-card p-6 rounded-2xl">
           <h3 class="font-bold text-xl mb-4 text-emerald-800">
             <i class="fas fa-wallet mr-2"></i>
             আপনার হাতে থাকবে
           </h3>
           <p id="remaining-salary" class="text-4xl font-extrabold text-emerald-600"></p>
-          <div class="progress-bar mt-3" id="remaining-progress"></div>
         </div>
 
         <div class="result-card p-6 rounded-2xl flex items-center gap-4">
-          <div id="leader-mood-icon" class="text-6xl floating-icon"></div>
+          <div id="leader-mood-icon" class="text-6xl"></div>
           <div>
             <h3 class="font-bold text-lg text-emerald-800 mb-2">হাই কমান্ডের প্রতিক্রিয়া</h3>
             <p id="leader-mood-text" class="font-semibold text-lg"></p>
@@ -1187,27 +243,8 @@
         </div>
       </div>
 
-      <!-- Secondary Results Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8" data-aos="fade-up" data-aos-delay="200">
-        <div class="result-card p-6 rounded-2xl flex items-center gap-4">
-          <div id="contribution-icon" class="text-6xl floating-icon"></div>
-          <div>
-            <h3 class="font-bold text-lg text-emerald-800 mb-2">টাকার সদ্ব্যবহার</h3>
-            <p id="contribution-text" class="font-semibold text-lg"></p>
-          </div>
-        </div>
-
-        <div class="result-card p-6 rounded-2xl flex items-center gap-4">
-          <div id="survival-icon" class="text-6xl floating-icon"></div>
-          <div>
-            <h3 class="font-bold text-lg text-emerald-800 mb-2">জীবিকা পর্যালোচনা</h3>
-            <p id="survival-text" class="font-semibold text-lg"></p>
-          </div>
-        </div>
-      </div>
-
       <!-- Detailed Stats -->
-      <div class="result-card p-6 rounded-2xl mb-8" data-aos="fade-up" data-aos-delay="300">
+      <div class="result-card p-6 rounded-2xl mb-8">
         <h3 class="font-bold text-xl mb-4 text-emerald-800">
           <i class="fas fa-chart-bar mr-2"></i>
           চাঁদার বিস্তারিত
@@ -1216,100 +253,65 @@
       </div>
 
       <!-- Charts Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8" data-aos="fade-up" data-aos-delay="400">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div class="chart-container">
           <h4 class="text-lg font-bold text-emerald-800 mb-4 text-center">
             <i class="fas fa-chart-pie mr-2"></i>
             চাঁদার বিতরণ
           </h4>
-          <canvas id="chadaChart" aria-label="চাঁদার পাই চার্ট" role="img"></canvas>
+          <canvas id="chadaChart"></canvas>
         </div>
         <div class="chart-container">
           <h4 class="text-lg font-bold text-emerald-800 mb-4 text-center">
             <i class="fas fa-chart-line mr-2"></i>
             বার্ষিক প্রক্ষেপণ
           </h4>
-          <canvas id="yearlyChart" aria-label="বার্ষিক চার্ট" role="img"></canvas>
+          <canvas id="yearlyChart"></canvas>
         </div>
       </div>
 
       <!-- Humor Text -->
-      <div class="result-card p-6 rounded-2xl mb-8 text-center" data-aos="fade-up" data-aos-delay="500">
+      <div class="result-card p-6 rounded-2xl mb-8 text-center">
         <p id="humor-text" class="text-xl italic text-emerald-800 font-semibold"></p>
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex flex-wrap justify-center gap-4 mb-8" data-aos="fade-up" data-aos-delay="600">
-        <button
-          id="generate-invoice-btn"
-          class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          aria-label="রসিদ তৈরি করুন"
-        >
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button id="generate-invoice-btn" class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
           <i class="fas fa-receipt mr-2"></i>
           রসিদ তৈরি করুন
         </button>
-        <button
-          id="share-result-btn"
-          class="btn-secondary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          aria-label="ফলাফল শেয়ার করুন"
-        >
+        <button id="share-result-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
           <i class="fas fa-share-alt mr-2"></i>
           শেয়ার করুন
         </button>
-        <button
-          id="save-history-btn"
-          class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          aria-label="হিস্টরিতে সেভ করুন"
-        >
-          <i class="fas fa-save mr-2"></i>
-          সেভ করুন
-        </button>
-        <button
-          id="voice-summary-btn"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          aria-label="ভয়েস সামারি"
-        >
-          <i class="fas fa-volume-up mr-2"></i>
-          ভয়েস সামারি
-        </button>
-      </div>
-
-      <!-- Calculation History -->
-      <div class="result-card p-6 rounded-2xl mb-8" data-aos="fade-up" data-aos-delay="700">
-        <h3 class="font-bold text-xl mb-4 text-emerald-800">
-          <i class="fas fa-history mr-2"></i>
-          হিসাবের ইতিহাস
-        </h3>
-        <div id="calculation-history" class="calculator-history space-y-2">
-          <p class="text-gray-600 text-center">এখনো কোনো হিসাব সেভ করা হয়নি</p>
-        </div>
       </div>
 
       <!-- Advanced Features -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8" data-aos="fade-up" data-aos-delay="800">
-        <div class="feature-card p-6 rounded-2xl text-center">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div class="result-card p-6 rounded-2xl text-center">
           <i class="fas fa-chart-line text-4xl text-emerald-600 mb-4"></i>
           <h4 class="font-bold text-lg mb-2">ট্রেন্ড এনালাইসিস</h4>
-          <p class="text-sm text-gray-600">আপনার চাঁদার ট্রেন্ড দেখুন</p>
-          <button id="trend-analysis-btn" class="mt-3 btn-primary px-4 py-2 rounded-lg text-sm">
+          <p class="text-sm text-gray-600 mb-4">আপনার চাঁদার ট্রেন্ড দেখুন</p>
+          <button id="trend-analysis-btn" class="btn-primary px-4 py-2 rounded-lg text-sm">
             দেখুন
           </button>
         </div>
         
-        <div class="feature-card p-6 rounded-2xl text-center">
+        <div class="result-card p-6 rounded-2xl text-center">
           <i class="fas fa-users text-4xl text-emerald-600 mb-4"></i>
           <h4 class="font-bold text-lg mb-2">তুলনামূলক বিশ্লেষণ</h4>
-          <p class="text-sm text-gray-600">অন্যদের সাথে তুলনা করুন</p>
-          <button id="comparison-btn" class="mt-3 btn-primary px-4 py-2 rounded-lg text-sm">
+          <p class="text-sm text-gray-600 mb-4">অন্যদের সাথে তুলনা করুন</p>
+          <button id="comparison-btn" class="btn-primary px-4 py-2 rounded-lg text-sm">
             তুলনা করুন
           </button>
         </div>
         
-        <div class="feature-card p-6 rounded-2xl text-center">
+        <div class="result-card p-6 rounded-2xl text-center">
           <i class="fas fa-trophy text-4xl text-emerald-600 mb-4"></i>
           <h4 class="font-bold text-lg mb-2">লিডারবোর্ড</h4>
-          <p class="text-sm text-gray-600">টপ কন্ট্রিবিউটর দেখুন</p>
-          <button id="leaderboard-btn" class="mt-3 btn-primary px-4 py-2 rounded-lg text-sm">
+          <p class="text-sm text-gray-600 mb-4">টপ কন্ট্রিবিউটর দেখুন</p>
+          <button id="leaderboard-btn" class="btn-primary px-4 py-2 rounded-lg text-sm">
             র‍্যাঙ্কিং
           </button>
         </div>
@@ -1318,33 +320,16 @@
   </main>
 
   <!-- Invoice Modal -->
-  <div
-    id="invoice-modal"
-    class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="invoice-title"
-  >
-    <div class="modal-content rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative animate-scale-in max-h-[90vh] overflow-y-auto">
-      <button
-        id="close-invoice-btn"
-        class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold transition-colors z-10"
-        title="বন্ধ করুন"
-        aria-label="বন্ধ করুন"
-      >
+  <div id="invoice-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
+    <div class="modal-content rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
+      <button id="close-invoice-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
         <i class="fas fa-times"></i>
       </button>
 
-      <div id="invoice-content" class="invoice-template select-text" role="document">
+      <div id="invoice-content" class="select-text">
         <div class="text-center mb-6">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg"
-            alt="BNP Logo"
-            class="w-20 h-20 mx-auto mb-4"
-          />
-          <h2 id="invoice-title" class="text-3xl font-bold text-emerald-800 mb-2" tabindex="0">
-            দেশনেতার চাঁদা রসিদ
-          </h2>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP Logo" class="w-20 h-20 mx-auto mb-4" />
+          <h2 class="text-3xl font-bold text-emerald-800 mb-2">দেশনেতার চাঁদা রসিদ</h2>
           <p class="text-gray-600">বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</p>
           <div class="w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 my-4"></div>
         </div>
@@ -1352,17 +337,13 @@
         <div id="invoice-body" class="mb-6"></div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div id="invoice-signature" class="text-center" aria-label="ডিজিটাল সিগনেচার">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg"
-              alt="দেশনেতার স্বাক্ষর"
-              class="mx-auto w-40 filter drop-shadow-lg mb-2"
-            />
+          <div class="text-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="দেশনেতার স্বাক্ষর" class="mx-auto w-40 mb-2" />
             <p class="text-sm text-gray-600 font-semibold">দেশনেতার স্বাক্ষর</p>
             <p class="text-xs text-gray-500">তারেক রহমান</p>
           </div>
           <div class="text-center">
-            <div id="invoice-qr" class="mx-auto w-32 h-32 mb-2" aria-label="রসিদ QR কোড" role="img"></div>
+            <div id="invoice-qr" class="mx-auto w-32 h-32 mb-2"></div>
             <p class="text-xs text-gray-500">QR কোড স্ক্যান করুন</p>
           </div>
         </div>
@@ -1374,84 +355,59 @@
       </div>
 
       <div class="mt-6 flex flex-wrap justify-center gap-4">
-        <button
-          id="download-pdf-btn"
-          class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2"
-        >
+        <button id="download-pdf-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
           <i class="fas fa-file-pdf"></i>
           PDF ডাউনলোড
         </button>
-        <button
-          id="download-jpg-btn"
-          class="btn-secondary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2"
-        >
+        <button id="download-jpg-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
           <i class="fas fa-image"></i>
           JPG ডাউনলোড
         </button>
-        <button
-          id="print-invoice-btn"
-          class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2"
-        >
+        <button id="print-invoice-btn" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
           <i class="fas fa-print"></i>
           প্রিন্ট করুন
-        </button>
-        <button
-          id="close-invoice-btn-2"
-          class="bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-lg font-semibold transition-colors"
-        >
-          বন্ধ করুন
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Voice Summary Modal -->
-  <div
-    id="voice-modal"
-    class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50"
-    role="dialog"
-    aria-modal="true"
-  >
-    <div class="modal-content rounded-2xl shadow-2xl max-w-md w-full p-8 relative animate-scale-in text-center">
-      <button
-        id="close-voice-btn"
-        class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold transition-colors"
-        title="বন্ধ করুন"
-        aria-label="বন্ধ করুন"
-      >
+  <!-- Feature Modals -->
+  <div id="leaderboard-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
+    <div class="modal-content rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
+      <button id="close-leaderboard-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
         <i class="fas fa-times"></i>
       </button>
+      <h3 class="text-2xl font-bold text-emerald-800 mb-4">
+        <i class="fas fa-trophy mr-2"></i>
+        লিডারবোর্ড
+      </h3>
+      <div id="leaderboard-content"></div>
+    </div>
+  </div>
 
-      <div class="mb-6">
-        <i class="fas fa-microphone text-6xl text-emerald-600 mb-4"></i>
-        <h3 class="text-2xl font-bold text-emerald-800 mb-2">ভয়েস সামারি</h3>
-        <p class="text-gray-600">আপনার চাঁদার হিসাব শুনুন</p>
-      </div>
+  <div id="comparison-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
+    <div class="modal-content rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
+      <button id="close-comparison-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 class="text-2xl font-bold text-emerald-800 mb-4">
+        <i class="fas fa-users mr-2"></i>
+        তুলনামূলক বিশ্লেষণ
+      </h3>
+      <div id="comparison-content"></div>
+    </div>
+  </div>
 
-      <div id="voice-visualizer" class="mb-6">
-        <div class="voice-wave"></div>
-        <div class="voice-wave"></div>
-        <div class="voice-wave"></div>
-        <div class="voice-wave"></div>
-        <div class="voice-wave"></div>
-      </div>
-
-      <div class="flex justify-center gap-4">
-        <button
-          id="play-voice-btn"
-          class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2"
-        >
-          <i class="fas fa-play"></i>
-          চালু করুন
-        </button>
-        <button
-          id="stop-voice-btn"
-          class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2"
-        >
-          <i class="fas fa-stop"></i>
-          বন্ধ করুন
-        </button>
-      </div>
+  <div id="trend-analysis-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
+    <div class="modal-content rounded-2xl shadow-2xl max-w-lg w-full p-8 relative">
+      <button id="close-trend-analysis-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 class="text-2xl font-bold text-emerald-800 mb-4">
+        <i class="fas fa-chart-line mr-2"></i>
+        ট্রেন্ড এনালাইসিস
+      </h3>
+      <div id="trend-analysis-content"></div>
     </div>
   </div>
 
@@ -1460,178 +416,12 @@
     <span id="notification-text"></span>
   </div>
 
-  <!-- Footer -->
-  <footer class="glass-effect text-emerald-800 text-center p-8 mt-16 select-none">
-    <div class="max-w-4xl mx-auto">
-      <div class="floating-icon mb-4">
-        <p class="text-2xl font-bold holographic-text">⚡ বিপ্লবী ডেভেলপার ⚡</p>
-      </div>
-      <p class="text-lg font-semibold mb-2">"কোড দিয়ে বিপ্লব, বাগ দিয়ে গণতন্ত্র!"</p>
-      <p class="mb-4">
-        <a
-          href="https://facebook.com/Shahinurrahman.0.Official"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline text-emerald-600 hover:text-emerald-800 transition-colors font-semibold"
-        >
-          <i class="fab fa-facebook mr-2"></i>
-          Facebook Group
-        </a>
-      </p>
-      <p class="text-sm opacity-75">© ২০২৫ বিপ্লবী ডেভেলপার | All rights reserved for revolution</p>
-    </div>
-  </footer>
-
   <!-- Scripts -->
   <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      easing: 'ease-out-cubic',
-      once: true
-    });
-
     // Global variables
-    let calculationHistory = JSON.parse(localStorage.getItem('chadaHistory') || '[]');
     let currentCalculation = null;
     let chadaChartInstance = null;
     let yearlyChartInstance = null;
-    let currentTheme = localStorage.getItem('theme') || 'light';
-    let speechSynthesis = window.speechSynthesis;
-    let currentUtterance = null;
-
-    // Theme management
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const matrixRain = document.getElementById('matrix-rain');
-
-    // Apply saved theme
-    applyTheme(currentTheme);
-
-    function applyTheme(theme) {
-      body.className = theme;
-      themeToggle.className = `theme-toggle ${theme}`;
-      
-      const dot = themeToggle.querySelector('.theme-toggle-dot');
-      switch(theme) {
-        case 'light':
-          dot.textContent = '🌞';
-          matrixRain.classList.add('hidden');
-          break;
-        case 'dark':
-          dot.textContent = '🌙';
-          matrixRain.classList.add('hidden');
-          break;
-        case 'cyber':
-          dot.textContent = '🤖';
-          matrixRain.classList.remove('hidden');
-          initMatrixRain();
-          break;
-        case 'neon':
-          dot.textContent = '💫';
-          matrixRain.classList.add('hidden');
-          break;
-      }
-      
-      updateParticles(theme);
-      currentTheme = theme;
-      localStorage.setItem('theme', theme);
-    }
-
-    themeToggle.addEventListener('click', function() {
-      const themes = ['light', 'dark', 'cyber', 'neon'];
-      const currentIndex = themes.indexOf(currentTheme);
-      const nextTheme = themes[(currentIndex + 1) % themes.length];
-      applyTheme(nextTheme);
-    });
-
-    // Matrix rain effect
-    function initMatrixRain() {
-      matrixRain.innerHTML = '';
-      const chars = '০১২৩৪৫৬৭৮৯ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-      
-      for (let i = 0; i < 50; i++) {
-        const char = document.createElement('div');
-        char.className = 'matrix-char';
-        char.textContent = chars[Math.floor(Math.random() * chars.length)];
-        char.style.left = Math.random() * 100 + '%';
-        char.style.animationDelay = Math.random() * 20 + 's';
-        char.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        matrixRain.appendChild(char);
-      }
-    }
-
-    // Initialize particles
-    function updateParticles(theme) {
-      let particleColor = '#10b981';
-      let lineColor = '#10b981';
-      
-      switch(theme) {
-        case 'cyber':
-          particleColor = '#00ff88';
-          lineColor = '#00ff88';
-          break;
-        case 'neon':
-          particleColor = '#00aaff';
-          lineColor = '#00aaff';
-          break;
-        case 'dark':
-          particleColor = '#a7f3d0';
-          lineColor = '#a7f3d0';
-          break;
-      }
-
-      if (window.pJSDom && window.pJSDom[0]) {
-        pJSDom[0].pJS.particles.color.value = particleColor;
-        pJSDom[0].pJS.particles.line_linked.color = lineColor;
-        pJSDom[0].pJS.fn.particlesRefresh();
-      } else {
-        initParticles(particleColor, lineColor);
-      }
-    }
-
-    function initParticles(particleColor, lineColor) {
-      particlesJS('particles-js', {
-        particles: {
-          number: { value: 100, density: { enable: true, value_area: 800 } },
-          color: { value: particleColor },
-          shape: { type: 'circle' },
-          opacity: { value: 0.6, random: true },
-          size: { value: 3, random: true },
-          line_linked: { enable: true, distance: 150, color: lineColor, opacity: 0.4, width: 1 },
-          move: { enable: true, speed: 6, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
-        },
-        interactivity: {
-          detect_on: 'canvas',
-          events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
-          modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
-        },
-        retina_detect: true
-      });
-    }
-
-    // Initialize particles with default theme
-    initParticles('#10b981', '#10b981');
-
-    // Sparkles effect
-    function createSparkles() {
-      const container = document.getElementById('sparkles-container');
-      setInterval(() => {
-        if (Math.random() < 0.3) {
-          const sparkle = document.createElement('div');
-          sparkle.className = 'sparkle';
-          sparkle.style.left = Math.random() * 100 + '%';
-          sparkle.style.top = Math.random() * 100 + '%';
-          container.appendChild(sparkle);
-          
-          setTimeout(() => {
-            sparkle.remove();
-          }, 1500);
-        }
-      }, 500);
-    }
-
-    createSparkles();
 
     // Notification system
     function showNotification(message, type = 'success') {
@@ -1647,44 +437,7 @@
       }, 4000);
     }
 
-    // Confetti effect
-    function triggerConfetti() {
-      const colors = currentTheme === 'cyber' ? ['#00ff88', '#00cc66', '#66ff99'] :
-                    currentTheme === 'neon' ? ['#00aaff', '#0088cc', '#66ccff'] :
-                    ['#10b981', '#34d399', '#6ee7b7'];
-      
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: colors
-      });
-    }
-
-    // Icons object
-    const icons = {
-      survival: {
-        crying: `😭`,
-        sad: `😔`,
-        neutral: `😐`,
-        happy: `😊`,
-      },
-      leaderMood: {
-        angry: `😡`,
-        thinking: `🤔`,
-        happy: `😄`,
-        strong: `💪`,
-        trophy: `🏆`,
-      },
-      contribution: {
-        tea: `☕`,
-        rock: `🧱`,
-        plane: `✈️`,
-        building: `🏛️`,
-      },
-    };
-
-    // Format currency in Bangladeshi Taka with Bengali digits
+    // Format currency in Bangladeshi Taka
     function formatCurrency(amount) {
       return `৳ ${amount.toLocaleString("bn-BD", {
         minimumFractionDigits: 2,
@@ -1704,14 +457,7 @@
         rickshaw_puller: "রিকশাওয়ালা ভাই, আপনার ভাড়ার টাকা দিয়ে নেতার গাড়ির পেট্রোল! কী চমৎকার ব্যাপার!",
         day_laborer: "দিনমজুর ভাই, আপনার হাড়ভাঙা খাটুনির টাকা দিয়ে নেতার বিদেশ সফর! দেশপ্রেমের নমুনা!",
         unemployed: "বেকার ভাই, কাজ নেই কিন্তু চাঁদা দিতে হবে! এটাই তো আমাদের পার্টির নিয়ম!",
-        expatriate_worker: "প্রবাসী ভাই, আপনার রেমিট্যান্সই দেশের মেরুদণ্ড! সেই মেরুদণ্ড নেতার পকেটে!",
-        it_professional: "আইটি ভাই, সফটওয়্যার কোডের সাথে চাঁদাও জমাতে হবে, দেশ গড়তে!",
-        employee: "চাকুরিজীবী ভাই, বেতন থেকে একটু চাঁদা, নেতার সফলতার সোপান!",
-        student: "ছাত্র ভাই, পড়াশোনার পাশাপাশি নেতার চাঁদা, ভবিষ্যতের বিনিয়োগ!",
-        freedom_fighter: "মুক্তিযোদ্ধা ভাই, আপনার ত্যাগের ঋণ শোধ করতে চাঁদা!",
-        farmer: "কৃষক ভাই, ফসলের মুনাফা থেকে একটু চাঁদা, দেশের প্রগতি!",
-        artist: "শিল্পী ভাই, সৃজনশীলতার সাথে নেতার প্রেরণাও চাঁদা চাই!",
-        driver: "ড্রাইভার ভাই, রাস্তার ধূলিকণা থেকে চাঁদার মিষ্টি সংগ্রহ!"
+        expatriate_worker: "প্রবাসী ভাই, আপনার রেমিট্যান্সই দেশের মেরুদণ্ড! সেই মেরুদণ্ড নেতার পকেটে!"
       };
       return texts[profession] || "আপনার টাকায় কেনা পেট্রোল গণতন্ত্রের মশাল জ্বালাবে!";
     }
@@ -1719,52 +465,20 @@
     // Leader mood based on monthly chada
     function getLeadersMood(monthlyChada) {
       if (monthlyChada < 2000)
-        return { icon: icons.leaderMood.angry, text: "চেয়ারম্যান হতাশ!" };
+        return { icon: "😡", text: "চেয়ারম্যান হতাশ!" };
       if (monthlyChada < 10000)
-        return { icon: icons.leaderMood.thinking, text: "লন্ডন থেকে বার্তা আসবে..." };
+        return { icon: "🤔", text: "লন্ডন থেকে বার্তা আসবে..." };
       if (monthlyChada < 50000)
-        return { icon: icons.leaderMood.happy, text: "দেশনেত্রী খুশি হবেন!" };
+        return { icon: "😄", text: "দেশনেত্রী খুশি হবেন!" };
       if (monthlyChada < 100000)
-        return { icon: icons.leaderMood.strong, text: "জিয়ার সৈনিক সফল!" };
-      return { icon: icons.leaderMood.trophy, text: "সরাসরি নমিনেশন!" };
-    }
-
-    // Contribution use text and icon
-    function getContributionUse(monthlyChada) {
-      if (monthlyChada < 2000)
-        return { icon: icons.contribution.tea, text: "নেতার এক কাপ চা" };
-      if (monthlyChada < 10000)
-        return { icon: icons.contribution.rock, text: "হরতালের জন্য ইট-পাটকেল" };
-      if (monthlyChada < 50000)
-        return { icon: icons.contribution.plane, text: "লন্ডন সফরের একাংশ" };
-      return { icon: icons.contribution.building, text: "নমিনেশনের ডাউন পেমেন্ট" };
-    }
-
-    // Survival analysis based on remaining salary
-    function getSurvivalAnalysis(remainingSalary) {
-      if (remainingSalary < 15000)
-        return {
-          icon: icons.survival.crying,
-          text: "এই টাকায় মাস চলবে? আন্দোলন করার শক্তিও তো থাকবে না!",
-        };
-      if (remainingSalary < 25000)
-        return { icon: icons.survival.sad, text: "ডাল-ভাত খেয়ে গণতন্ত্র রক্ষা করতে হবে!" };
-      if (remainingSalary < 50000)
-        return {
-          icon: icons.survival.neutral,
-          text: "আপনি টিকে যাবেন, দলের জন্যও কিছু করতে পারবেন।",
-        };
-      return {
-        icon: icons.survival.happy,
-        text: "আপনি তো বেশ ভালোই থাকবেন! দলের জন্য আরও ভাবুন!",
-      };
+        return { icon: "💪", text: "জিয়ার সৈনিক সফল!" };
+      return { icon: "🏆", text: "সরাসরি নমিনেশন!" };
     }
 
     // Calculate chada function
     function calculateChada() {
       const profession = document.getElementById("profession").value;
-      const salaryInput = document.getElementById("salary");
-      const salary = parseFloat(salaryInput.value);
+      const salary = parseFloat(document.getElementById("salary").value);
 
       const resultContainer = document.getElementById("result-container");
       const errorMessage = document.getElementById("error-message");
@@ -1813,59 +527,34 @@
         };
 
         // Update humor text
-        const humorTextElem = document.getElementById("humor-text");
-        if (humorTextElem) humorTextElem.textContent = getHumorText(profession);
+        document.getElementById("humor-text").textContent = getHumorText(profession);
 
         // Leader mood
         const mood = getLeadersMood(monthlyChada);
-        const leaderMoodIconElem = document.getElementById("leader-mood-icon");
-        const leaderMoodTextElem = document.getElementById("leader-mood-text");
-        if (leaderMoodIconElem) leaderMoodIconElem.textContent = mood.icon;
-        if (leaderMoodTextElem) leaderMoodTextElem.textContent = mood.text;
-
-        // Contribution use
-        const contribution = getContributionUse(monthlyChada);
-        const contributionIconElem = document.getElementById("contribution-icon");
-        const contributionTextElem = document.getElementById("contribution-text");
-        if (contributionIconElem) contributionIconElem.textContent = contribution.icon;
-        if (contributionTextElem) contributionTextElem.textContent = contribution.text;
-
-        // Survival analysis
-        const survival = getSurvivalAnalysis(remainingSalary);
-        const survivalIconElem = document.getElementById("survival-icon");
-        const survivalTextElem = document.getElementById("survival-text");
-        if (survivalIconElem) survivalIconElem.textContent = survival.icon;
-        if (survivalTextElem) survivalTextElem.textContent = survival.text;
+        document.getElementById("leader-mood-icon").textContent = mood.icon;
+        document.getElementById("leader-mood-text").textContent = mood.text;
 
         // Remaining salary display
-        const remainingSalaryElem = document.getElementById("remaining-salary");
-        if (remainingSalaryElem) remainingSalaryElem.textContent = formatCurrency(remainingSalary);
-
-        // Progress bar
-        const progressBar = document.getElementById("remaining-progress");
-        const progressPercentage = (remainingSalary / salary) * 100;
-        progressBar.style.width = `${progressPercentage}%`;
+        document.getElementById("remaining-salary").textContent = formatCurrency(remainingSalary);
 
         // Detailed results
         const resultDetails = document.getElementById("result-details");
-        if (resultDetails) {
-          resultDetails.innerHTML = "";
-          [
-            { label: "দৈনিক", value: formatCurrency(dailyChada), icon: "fas fa-calendar-day", color: "bg-emerald-100" },
-            { label: "সাপ্তাহিক", value: formatCurrency(weeklyChada), icon: "fas fa-calendar-week", color: "bg-blue-100" },
-            { label: "মাসিক", value: formatCurrency(monthlyChada), icon: "fas fa-calendar-alt", color: "bg-purple-100" },
-            { label: "বাৎসরিক", value: formatCurrency(yearlyChada), icon: "fas fa-calendar", color: "bg-red-100" },
-          ].forEach((item) => {
-            const div = document.createElement("div");
-            div.className = `stats-card ${item.color} p-4 rounded-xl text-center transition-transform hover:scale-105`;
-            div.innerHTML = `
-              <i class="${item.icon} text-2xl text-emerald-600 mb-2"></i>
-              <p class="font-semibold text-emerald-800">${item.label}</p>
-              <p class="text-lg font-bold text-emerald-600">${item.value}</p>
-            `;
-            resultDetails.appendChild(div);
-          });
-        }
+        resultDetails.innerHTML = "";
+        [
+          { label: "দৈনিক", value: formatCurrency(dailyChada), icon: "fas fa-calendar-day" },
+          { label: "সাপ্তাহিক", value: formatCurrency(weeklyChada), icon: "fas fa-calendar-week" },
+          { label: "মাসিক", value: formatCurrency(monthlyChada), icon: "fas fa-calendar-alt" },
+          { label: "বাৎসরিক", value: formatCurrency(yearlyChada), icon: "fas fa-calendar" },
+        ].forEach((item) => {
+          const div = document.createElement("div");
+          div.className = "bg-emerald-100 p-4 rounded-xl text-center transition-transform hover:scale-105";
+          div.innerHTML = `
+            <i class="${item.icon} text-2xl text-emerald-600 mb-2"></i>
+            <p class="font-semibold text-emerald-800">${item.label}</p>
+            <p class="text-lg font-bold text-emerald-600">${item.value}</p>
+          `;
+          resultDetails.appendChild(div);
+        });
 
         // Charts
         updateCharts(dailyChada, weeklyChada, monthlyChada, yearlyChada);
@@ -1873,18 +562,11 @@
         resultContainer.classList.remove("hidden");
         resultContainer.scrollIntoView({ behavior: "smooth" });
         showNotification("হিসাব সম্পন্ন হয়েছে!", "success");
-        triggerConfetti();
       }, 1500);
     }
 
     // Update charts function
     function updateCharts(dailyChada, weeklyChada, monthlyChada, yearlyChada) {
-      const chartColors = currentTheme === 'cyber' ? 
-        ["rgba(0,255,136,0.8)", "rgba(0,204,102,0.8)", "rgba(102,255,153,0.8)", "rgba(51,255,119,0.8)"] :
-        currentTheme === 'neon' ?
-        ["rgba(0,170,255,0.8)", "rgba(0,136,204,0.8)", "rgba(102,204,255,0.8)", "rgba(51,187,255,0.8)"] :
-        ["rgba(34,197,94,0.8)", "rgba(59,130,246,0.8)", "rgba(147,51,234,0.8)", "rgba(239,68,68,0.8)"];
-
       // Pie Chart
       const ctx1 = document.getElementById("chadaChart").getContext("2d");
       if (chadaChartInstance) chadaChartInstance.destroy();
@@ -1897,8 +579,8 @@
             {
               label: "চাঁদার পরিমাণ (টাকায়)",
               data: [dailyChada, weeklyChada, monthlyChada, yearlyChada],
-              backgroundColor: chartColors,
-              borderColor: currentTheme === 'cyber' ? "#00ff88" : currentTheme === 'neon' ? "#00aaff" : "#ffffff",
+              backgroundColor: ["rgba(34,197,94,0.8)", "rgba(59,130,246,0.8)", "rgba(147,51,234,0.8)", "rgba(239,68,68,0.8)"],
+              borderColor: "#ffffff",
               borderWidth: 3,
               hoverOffset: 10,
             },
@@ -1912,25 +594,10 @@
               position: 'bottom',
               labels: {
                 padding: 20,
-                font: {
-                  size: 12,
-                  family: 'Noto Sans Bengali'
-                },
-                color: currentTheme === 'cyber' ? '#00ff88' : currentTheme === 'neon' ? '#00aaff' : '#374151'
+                font: { size: 12, family: 'Noto Sans Bengali' }
               }
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              titleFont: { family: 'Noto Sans Bengali' },
-              bodyFont: { family: 'Noto Sans Bengali' }
             }
-          },
-          animation: {
-            animateRotate: true,
-            animateScale: true,
-            duration: 1000,
-            easing: "easeOutQuart"
-          },
+          }
         },
       });
 
@@ -1941,9 +608,6 @@
       const months = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
       const monthlyData = months.map(() => monthlyChada);
 
-      const lineColor = currentTheme === 'cyber' ? '#00ff88' : currentTheme === 'neon' ? '#00aaff' : '#10b981';
-      const fillColor = currentTheme === 'cyber' ? 'rgba(0, 255, 136, 0.1)' : currentTheme === 'neon' ? 'rgba(0, 170, 255, 0.1)' : 'rgba(16, 185, 129, 0.1)';
-
       yearlyChartInstance = new Chart(ctx2, {
         type: "line",
         data: {
@@ -1952,12 +616,12 @@
             {
               label: "মাসিক চাঁদা",
               data: monthlyData,
-              borderColor: lineColor,
-              backgroundColor: fillColor,
+              borderColor: "#10b981",
+              backgroundColor: "rgba(16, 185, 129, 0.1)",
               borderWidth: 3,
               fill: true,
               tension: 0.4,
-              pointBackgroundColor: lineColor,
+              pointBackgroundColor: "#10b981",
               pointBorderColor: "#ffffff",
               pointBorderWidth: 2,
               pointRadius: 6,
@@ -1968,108 +632,13 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: {
-              display: false
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              titleFont: { family: 'Noto Sans Bengali' },
-              bodyFont: { family: 'Noto Sans Bengali' }
-            }
+            legend: { display: false }
           },
           scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                color: currentTheme === 'cyber' ? 'rgba(0, 255, 136, 0.1)' : currentTheme === 'neon' ? 'rgba(0, 170, 255, 0.1)' : 'rgba(16, 185, 129, 0.1)'
-              },
-              ticks: {
-                font: { family: 'Noto Sans Bengali' },
-                color: currentTheme === 'cyber' ? '#00ff88' : currentTheme === 'neon' ? '#00aaff' : '#374151'
-              }
-            },
-            x: {
-              grid: {
-                color: currentTheme === 'cyber' ? 'rgba(0, 255, 136, 0.1)' : currentTheme === 'neon' ? 'rgba(0, 170, 255, 0.1)' : 'rgba(16, 185, 129, 0.1)'
-              },
-              ticks: {
-                font: { family: 'Noto Sans Bengali' },
-                color: currentTheme === 'cyber' ? '#00ff88' : currentTheme === 'neon' ? '#00aaff' : '#374151'
-              }
-            }
-          },
-          animation: {
-            duration: 1000,
-            easing: "easeOutQuart"
-          },
+            y: { beginAtZero: true },
+          }
         },
       });
-    }
-
-    // Save to history function
-    function saveToHistory() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
-
-      calculationHistory.unshift(currentCalculation);
-      if (calculationHistory.length > 10) {
-        calculationHistory = calculationHistory.slice(0, 10);
-      }
-
-      localStorage.setItem('chadaHistory', JSON.stringify(calculationHistory));
-      updateHistoryDisplay();
-      showNotification("হিস্টরিতে সেভ হয়েছে!", "success");
-    }
-
-    // Update history display
-    function updateHistoryDisplay() {
-      const historyContainer = document.getElementById('calculation-history');
-      
-      if (calculationHistory.length === 0) {
-        historyContainer.innerHTML = '<p class="text-gray-600 text-center">এখনো কোনো হিসাব সেভ করা হয়নি</p>';
-        return;
-      }
-
-      historyContainer.innerHTML = calculationHistory.map((calc, index) => {
-        const date = new Date(calc.timestamp).toLocaleDateString('bn-BD');
-        const professionSelect = document.getElementById("profession");
-        const professionText = Array.from(professionSelect.options).find(opt => opt.value === calc.profession)?.text || calc.profession;
-        
-        return `
-          <div class="bg-white bg-opacity-50 p-3 rounded-lg border border-emerald-200 hover:bg-opacity-70 transition-all cursor-pointer" onclick="loadFromHistory(${index})">
-            <div class="flex justify-between items-center">
-              <div>
-                <p class="font-semibold text-emerald-800">${professionText}</p>
-                <p class="text-sm text-gray-600">আয়: ${formatCurrency(calc.salary)} | চাঁদা: ${formatCurrency(calc.monthlyChada)}</p>
-              </div>
-              <div class="text-right">
-                <p class="text-xs text-gray-500">${date}</p>
-                <button onclick="event.stopPropagation(); deleteFromHistory(${index})" class="text-red-500 hover:text-red-700 text-xs">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // Load from history
-    function loadFromHistory(index) {
-      const calc = calculationHistory[index];
-      document.getElementById('profession').value = calc.profession;
-      document.getElementById('salary').value = calc.salary;
-      showNotification("হিস্টরি থেকে লোড হয়েছে!", "info");
-    }
-
-    // Delete from history
-    function deleteFromHistory(index) {
-      calculationHistory.splice(index, 1);
-      localStorage.setItem('chadaHistory', JSON.stringify(calculationHistory));
-      updateHistoryDisplay();
-      showNotification("হিস্টরি থেকে মুছে ফেলা হয়েছে!", "info");
     }
 
     // Share result function
@@ -2094,67 +663,7 @@
       }
     }
 
-    // Voice summary function
-    function generateVoiceSummary() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
-
-      const voiceModal = document.getElementById("voice-modal");
-      voiceModal.classList.remove("hidden");
-
-      const professionSelect = document.getElementById("profession");
-      const selectedProfession = professionSelect.options[professionSelect.selectedIndex].text;
-      
-      const summaryText = `আপনার পেশা ${selectedProfession}। মাসিক আয় ${formatCurrency(currentCalculation.salary)}। মাসিক চাঁদা ${formatCurrency(currentCalculation.monthlyChada)}। আপনার হাতে থাকবে ${formatCurrency(currentCalculation.remainingSalary)}। দেশনেতার জন্য আপনার অবদানের জন্য ধন্যবাদ।`;
-
-      // Store the text for voice synthesis
-      window.currentVoiceText = summaryText;
-    }
-
-    // Play voice summary
-    function playVoiceSummary() {
-      if (!window.currentVoiceText) return;
-
-      if (currentUtterance) {
-        speechSynthesis.cancel();
-      }
-
-      currentUtterance = new SpeechSynthesisUtterance(window.currentVoiceText);
-      currentUtterance.lang = 'bn-BD';
-      currentUtterance.rate = 0.8;
-      currentUtterance.pitch = 1;
-
-      currentUtterance.onstart = () => {
-        document.getElementById('voice-visualizer').style.display = 'flex';
-      };
-
-      currentUtterance.onend = () => {
-        document.getElementById('voice-visualizer').style.display = 'none';
-      };
-
-      speechSynthesis.speak(currentUtterance);
-      showNotification("ভয়েস সামারি চালু হয়েছে!", "success");
-    }
-
-    // Stop voice summary
-    function stopVoiceSummary() {
-      if (currentUtterance) {
-        speechSynthesis.cancel();
-        document.getElementById('voice-visualizer').style.display = 'none';
-        showNotification("ভয়েস সামারি বন্ধ হয়েছে!", "info");
-      }
-    }
-
-    // Close voice modal
-    function closeVoiceModal() {
-      const voiceModal = document.getElementById("voice-modal");
-      voiceModal.classList.add("hidden");
-      stopVoiceSummary();
-    }
-
-    // Invoice generation with PDF and JPG download
+    // Invoice generation
     function generateInvoice() {
       if (!currentCalculation) {
         showNotification("প্রথমে হিসাব করুন!", "error");
@@ -2170,7 +679,7 @@
         year: "numeric",
       });
 
-      // Fill invoice modal content dynamically
+      // Fill invoice modal content
       const invoiceContent = `
         <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-lg mb-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -2178,21 +687,15 @@
               <h4 class="font-bold text-emerald-800 mb-3">ব্যক্তিগত তথ্য</h4>
               <table class="w-full text-sm">
                 <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">
-                    <i class="fas fa-briefcase mr-2"></i>পেশা:
-                  </td>
+                  <td class="font-semibold py-2 text-emerald-800">পেশা:</td>
                   <td class="py-2">${selectedProfession}</td>
                 </tr>
                 <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">
-                    <i class="fas fa-money-bill-wave mr-2"></i>মাসিক আয়:
-                  </td>
+                  <td class="font-semibold py-2 text-emerald-800">মাসিক আয়:</td>
                   <td class="py-2 font-bold">${formatCurrency(currentCalculation.salary)}</td>
                 </tr>
                 <tr>
-                  <td class="font-semibold py-2 text-emerald-800">
-                    <i class="fas fa-calendar mr-2"></i>তারিখ:
-                  </td>
+                  <td class="font-semibold py-2 text-emerald-800">তারিখ:</td>
                   <td class="py-2">${dateString}</td>
                 </tr>
               </table>
@@ -2223,14 +726,12 @@
         <div class="text-center bg-emerald-600 text-white p-4 rounded-lg mb-4">
           <p class="font-bold text-xl">মোট বাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}</p>
           <p class="text-sm opacity-90">আপনার অবদানের জন্য ধন্যবাদ!</p>
-          <p class="text-xs opacity-75 mt-2">দেশ গড়ার কাজে আপনার সহযোগিতা অমূল্য</p>
         </div>
       `;
 
-      const invoiceBody = document.getElementById("invoice-body");
-      invoiceBody.innerHTML = invoiceContent;
+      document.getElementById("invoice-body").innerHTML = invoiceContent;
 
-      // Generate QR code for invoice summary
+      // Generate QR code
       const qrContainer = document.getElementById("invoice-qr");
       qrContainer.innerHTML = "";
       const qrText = `পেশা: ${selectedProfession}\nমাসিক চাঁদা: ${formatCurrency(currentCalculation.monthlyChada)}\nবাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}\nতারিখ: ${dateString}`;
@@ -2240,13 +741,10 @@
         height: 128,
         colorDark: "#065f46",
         colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H,
       });
 
       // Show modal
-      const invoiceModal = document.getElementById("invoice-modal");
-      invoiceModal.classList.remove("hidden");
-      
+      document.getElementById("invoice-modal").classList.remove("hidden");
       showNotification("রসিদ তৈরি হয়েছে!", "success");
     }
 
@@ -2254,46 +752,22 @@
     function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF('p', 'mm', 'a4');
-      
-      // Add content to PDF
-      const professionSelect = document.getElementById("profession");
-      const selectedProfession = professionSelect.options[professionSelect.selectedIndex].text;
-      const today = new Date();
-      const dateString = today.toLocaleDateString("bn-BD");
+      const invoiceElement = document.getElementById("invoice-content");
 
-      // Header
-      pdf.setFontSize(20);
-      pdf.text('দেশনেতার চাঁদা রসিদ', 105, 30, { align: 'center' });
-      
-      pdf.setFontSize(12);
-      pdf.text('বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)', 105, 40, { align: 'center' });
-      
-      // Line
-      pdf.line(20, 50, 190, 50);
-      
-      // Content
-      let yPos = 70;
-      pdf.setFontSize(14);
-      pdf.text(`পেশা: ${selectedProfession}`, 30, yPos);
-      yPos += 15;
-      pdf.text(`মাসিক আয়: ${formatCurrency(currentCalculation.salary)}`, 30, yPos);
-      yPos += 15;
-      pdf.text(`মাসিক চাঁদা: ${formatCurrency(currentCalculation.monthlyChada)}`, 30, yPos);
-      yPos += 15;
-      pdf.text(`বাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}`, 30, yPos);
-      yPos += 15;
-      pdf.text(`তারিখ: ${dateString}`, 30, yPos);
-      
-      // Footer
-      yPos += 40;
-      pdf.setFontSize(12);
-      pdf.text('আপনার অবদানের জন্য ধন্যবাদ!', 105, yPos, { align: 'center' });
-      yPos += 10;
-      pdf.text('দেশ গড়ার কাজে আপনার সহযোগিতা অমূল্য', 105, yPos, { align: 'center' });
-      
-      // Save PDF
-      pdf.save(`চাঁদা-রসিদ-${Date.now()}.pdf`);
-      showNotification("PDF ডাউনলোড হয়েছে!", "success");
+      html2canvas(invoiceElement, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`চাঁদা-রসিদ-${Date.now()}.pdf`);
+        showNotification("PDF ডাউনলোড হয়েছে!", "success");
+      });
     }
 
     // Download JPG function
@@ -2304,9 +778,7 @@
         scale: 2,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: '#ffffff',
-        width: invoiceElement.scrollWidth,
-        height: invoiceElement.scrollHeight
+        backgroundColor: '#ffffff'
       }).then((canvas) => {
         const link = document.createElement('a');
         link.download = `চাঁদা-রসিদ-${Date.now()}.jpg`;
@@ -2326,12 +798,9 @@
             <title>চাঁদা রসিদ</title>
             <style>
               body { font-family: 'Arial', sans-serif; margin: 20px; }
-              .invoice-template { background: white; color: #1f2937; }
             </style>
           </head>
-          <body>
-            <div class="invoice-template">${invoiceContent}</div>
-          </body>
+          <body>${invoiceContent}</body>
         </html>
       `);
       printWindow.document.close();
@@ -2339,82 +808,157 @@
       showNotification("প্রিন্ট ডায়ালগ খোলা হয়েছে!", "success");
     }
 
-    // Close invoice modal
-    function closeInvoiceModal() {
-      const invoiceModal = document.getElementById("invoice-modal");
-      invoiceModal.classList.add("hidden");
-    }
-
     // Advanced features
     function showTrendAnalysis() {
-      showNotification("ট্রেন্ড এনালাইসিস ফিচার শীঘ্রই আসছে!", "info");
+      if (!currentCalculation) {
+        showNotification("প্রথমে হিসাব করুন!", "error");
+        return;
+      }
+      
+      const trendModal = document.getElementById('trend-analysis-modal');
+      const trendContent = document.getElementById('trend-analysis-content');
+      
+      // Generate sample trend data
+      const months = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন'];
+      const data = months.map(() => currentCalculation.monthlyChada * (0.8 + Math.random() * 0.4));
+      
+      trendContent.innerHTML = `
+        <div class="mb-4">
+          <canvas id="trend-chart" style="height: 300px;"></canvas>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-600">গত ৬ মাসের চাঁদার ট্রেন্ড</p>
+          <p class="font-bold text-emerald-800">গড় মাসিক চাঁদা: ${formatCurrency(data.reduce((a, b) => a + b) / data.length)}</p>
+        </div>
+      `;
+      
+      setTimeout(() => {
+        new Chart(document.getElementById('trend-chart').getContext('2d'), {
+          type: 'line',
+          data: {
+            labels: months,
+            datasets: [{
+              label: 'মাসিক চাঁদা',
+              data: data,
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              tension: 0.1,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } }
+          }
+        });
+      }, 100);
+      
+      trendModal.classList.remove('hidden');
     }
 
     function showComparison() {
-      showNotification("তুলনামূলক বিশ্লেষণ ফিচার শীঘ্রই আসছে!", "info");
+      if (!currentCalculation) {
+        showNotification("প্রথমে হিসাব করুন!", "error");
+        return;
+      }
+      
+      const comparisonModal = document.getElementById('comparison-modal');
+      const comparisonContent = document.getElementById('comparison-content');
+      
+      const avgChada = currentCalculation.monthlyChada * 1.2;
+      const percentDiff = ((currentCalculation.monthlyChada - avgChada) / avgChada * 100).toFixed(1);
+      
+      comparisonContent.innerHTML = `
+        <div class="space-y-4">
+          <div class="bg-emerald-50 p-4 rounded-lg">
+            <h4 class="font-bold text-emerald-800 mb-2">আপনার চাঁদা</h4>
+            <p class="text-2xl font-bold text-emerald-600">${formatCurrency(currentCalculation.monthlyChada)}</p>
+          </div>
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h4 class="font-bold text-blue-800 mb-2">গড় চাঁদা</h4>
+            <p class="text-2xl font-bold text-blue-600">${formatCurrency(avgChada)}</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg text-center">
+            <p class="font-bold text-lg">
+              আপনি গড় থেকে 
+              <span class="${currentCalculation.monthlyChada > avgChada ? 'text-green-600' : 'text-red-600'}">
+                ${Math.abs(percentDiff)}% ${currentCalculation.monthlyChada > avgChada ? 'বেশি' : 'কম'}
+              </span> 
+              দিচ্ছেন
+            </p>
+          </div>
+        </div>
+      `;
+      
+      comparisonModal.classList.remove('hidden');
     }
 
     function showLeaderboard() {
-      showNotification("লিডারবোর্ড ফিচার শীঘ্রই আসছে!", "info");
+      const leaderboardModal = document.getElementById('leaderboard-modal');
+      const leaderboardContent = document.getElementById('leaderboard-content');
+      
+      const leaderboardData = [
+        { name: 'বিপ্লবী আহমেদ', chada: 25000, profession: 'ব্যবসায়ী' },
+        { name: 'বিপ্লবী রহিম', chada: 22000, profession: 'ডাক্তার' },
+        { name: 'বিপ্লবী করিম', chada: 20000, profession: 'ইঞ্জিনিয়ার' },
+        { name: 'বিপ্লবী সালাম', chada: 18000, profession: 'শিক্ষক' },
+        { name: 'বিপ্লবী জামাল', chada: 15000, profession: 'চাকুরিজীবী' },
+      ];
+      
+      leaderboardContent.innerHTML = `
+        <div class="space-y-2">
+          ${leaderboardData.map((user, i) => `
+            <div class="flex justify-between items-center p-3 ${i % 2 === 0 ? 'bg-emerald-50' : 'bg-gray-50'} rounded-lg">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-lg ${i < 3 ? 'text-yellow-600' : 'text-gray-600'}">${i+1}</span>
+                <div>
+                  <p class="font-semibold">${user.name}</p>
+                  <p class="text-sm text-gray-600">${user.profession}</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="font-bold text-emerald-600">${formatCurrency(user.chada)}</p>
+                <p class="text-xs text-gray-500">মাসিক</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="mt-4 text-center text-sm text-gray-600">
+          <p>আপনার অবস্থান নির্ভর করে আপনার চাঁদার উপর</p>
+        </div>
+      `;
+      
+      leaderboardModal.classList.remove('hidden');
     }
 
     // Event listeners
     document.getElementById("calculate-btn").addEventListener("click", calculateChada);
     document.getElementById("generate-invoice-btn").addEventListener("click", generateInvoice);
     document.getElementById("share-result-btn").addEventListener("click", shareResult);
-    document.getElementById("save-history-btn").addEventListener("click", saveToHistory);
-    document.getElementById("voice-summary-btn").addEventListener("click", generateVoiceSummary);
     document.getElementById("download-pdf-btn").addEventListener("click", downloadPDF);
     document.getElementById("download-jpg-btn").addEventListener("click", downloadJPG);
     document.getElementById("print-invoice-btn").addEventListener("click", printInvoice);
-    document.getElementById("close-invoice-btn").addEventListener("click", closeInvoiceModal);
-    document.getElementById("close-invoice-btn-2").addEventListener("click", closeInvoiceModal);
-    document.getElementById("play-voice-btn").addEventListener("click", playVoiceSummary);
-    document.getElementById("stop-voice-btn").addEventListener("click", stopVoiceSummary);
-    document.getElementById("close-voice-btn").addEventListener("click", closeVoiceModal);
+    document.getElementById("close-invoice-btn").addEventListener("click", () => document.getElementById("invoice-modal").classList.add("hidden"));
     document.getElementById("trend-analysis-btn").addEventListener("click", showTrendAnalysis);
     document.getElementById("comparison-btn").addEventListener("click", showComparison);
     document.getElementById("leaderboard-btn").addEventListener("click", showLeaderboard);
+    document.getElementById("close-leaderboard-btn").addEventListener("click", () => document.getElementById('leaderboard-modal').classList.add('hidden'));
+    document.getElementById("close-comparison-btn").addEventListener("click", () => document.getElementById('comparison-modal').classList.add('hidden'));
+    document.getElementById("close-trend-analysis-btn").addEventListener("click", () => document.getElementById('trend-analysis-modal').classList.add('hidden'));
 
-    // Accessibility: close modals on ESC key press
+    // Close modals on ESC key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        closeInvoiceModal();
-        closeVoiceModal();
+        document.getElementById("invoice-modal").classList.add("hidden");
+        document.getElementById('leaderboard-modal').classList.add('hidden');
+        document.getElementById('comparison-modal').classList.add('hidden');
+        document.getElementById('trend-analysis-modal').classList.add('hidden');
       }
     });
 
-    // Initialize page
-    document.addEventListener('DOMContentLoaded', function() {
-      updateHistoryDisplay();
-      showNotification("স্বাগতম! প্রো আল্টিমেট চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
-    });
-
-    // Add smooth scrolling for better UX
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // Add loading animation to buttons
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('click', function() {
-        if (!this.classList.contains('loading')) {
-          this.classList.add('loading');
-          setTimeout(() => {
-            this.classList.remove('loading');
-          }, 1000);
-        }
-      });
-    });
-
-    // Make functions global for onclick handlers
-    window.loadFromHistory = loadFromHistory;
-    window.deleteFromHistory = deleteFromHistory;
+    // Initialize
+    showNotification("স্বাগতম! চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
   </script>
 </body>
 </html>
