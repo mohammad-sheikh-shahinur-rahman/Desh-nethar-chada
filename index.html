@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>দেশনেতার চাঁদা ক্যালকুলেটর - প্রিমিয়াম সংস্করণ</title>
+  <title>দেশনেতার চাঁদা ক্যালকুলেটর - সম্পূর্ণ সংস্করণ</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -69,17 +69,6 @@
     .btn-primary:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
-    }
-
-    .btn-payment {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-      transition: all 0.3s ease;
-    }
-
-    .btn-payment:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
     }
 
     .input-field {
@@ -158,228 +147,9 @@
       border-radius: 1rem;
       padding: 1rem;
     }
-
-    .footer {
-      background: linear-gradient(135deg, #064e3b, #047857);
-      color: white;
-    }
-
-    .footer-pattern {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    .payment-card {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      color: white;
-      box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
-    }
-
-    .signature-container {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 0.5rem;
-      padding: 1rem;
-      text-align: center;
-      border: 2px dashed rgba(34, 197, 94, 0.3);
-    }
-
-    .auto-receipt {
-      animation: slideInUp 0.5s ease-out;
-    }
-
-    @keyframes slideInUp {
-      from {
-        transform: translateY(100px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .pulse-animation {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    /* Mobile Menu Styles */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 280px;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-      transition: right 0.3s ease;
-      z-index: 1000;
-      overflow-y: auto;
-    }
-
-    .mobile-menu.open {
-      right: 0;
-    }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .mobile-menu-overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .hamburger-btn {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 30px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 1001;
-    }
-
-    .hamburger-btn span {
-      width: 30px;
-      height: 3px;
-      background: #064e3b;
-      border-radius: 10px;
-      transition: all 0.3s linear;
-      position: relative;
-      transform-origin: 1px;
-    }
-
-    .hamburger-btn.open span:first-child {
-      transform: rotate(45deg);
-    }
-
-    .hamburger-btn.open span:nth-child(2) {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-
-    .hamburger-btn.open span:nth-child(3) {
-      transform: rotate(-45deg);
-    }
-
-    @media (max-width: 768px) {
-      .hamburger-btn {
-        display: flex;
-      }
-      
-      .desktop-nav {
-        display: none;
-      }
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
-      color: #064e3b;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(6, 78, 59, 0.1);
-    }
-
-    .menu-item:hover {
-      background: rgba(16, 185, 129, 0.1);
-      color: #059669;
-    }
-
-    .menu-item i {
-      width: 20px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu">
-    <div class="p-6">
-      <div class="flex items-center justify-between mb-8">
-        <div class="flex items-center gap-3">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-10 h-10" />
-          <div>
-            <h3 class="font-bold text-lg text-emerald-800">বিএনপি</h3>
-            <p class="text-xs text-gray-600">চাঁদা ক্যালকুলেটর</p>
-          </div>
-        </div>
-        <button id="close-mobile-menu" class="text-2xl text-gray-600 hover:text-gray-900">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-
-      <nav class="space-y-2">
-        <a href="#calculator" class="menu-item" onclick="scrollToSection('calculator')">
-          <i class="fas fa-calculator"></i>
-          <span>ক্যালকুলেটর</span>
-        </a>
-        <a href="#payment" class="menu-item" onclick="scrollToSection('payment')">
-          <i class="fas fa-credit-card"></i>
-          <span>পেমেন্ট</span>
-        </a>
-        <a href="#receipt" class="menu-item" onclick="scrollToSection('receipt')">
-          <i class="fas fa-receipt"></i>
-          <span>রসিদ</span>
-        </a>
-        <a href="#features" class="menu-item" onclick="scrollToSection('features')">
-          <i class="fas fa-star"></i>
-          <span>ফিচারসমূহ</span>
-        </a>
-        <div class="menu-item" onclick="showTrendAnalysis()">
-          <i class="fas fa-chart-line"></i>
-          <span>ট্রেন্ড এনালাইসিস</span>
-        </div>
-        <div class="menu-item" onclick="showComparison()">
-          <i class="fas fa-users"></i>
-          <span>তুলনামূলক বিশ্লেষণ</span>
-        </div>
-        <div class="menu-item" onclick="showLeaderboard()">
-          <i class="fas fa-trophy"></i>
-          <span>লিডারবোর্ড</span>
-        </div>
-        <div class="menu-item" onclick="shareResult()">
-          <i class="fas fa-share-alt"></i>
-          <span>শেয়ার করুন</span>
-        </div>
-      </nav>
-
-      <div class="mt-8 pt-6 border-t border-gray-200">
-        <div class="text-center">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="তারেক রহমানের স্বাক্ষর" class="mx-auto w-24 mb-2" />
-          <p class="text-sm font-semibold text-emerald-800">তারেক রহমান</p>
-          <p class="text-xs text-gray-600">ভারপ্রাপ্ত চেয়ারম্যান</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Header -->
   <header class="fixed w-full top-0 z-50 glass-effect text-emerald-800 shadow-2xl p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -387,32 +157,16 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-12 h-12" />
         <h1 class="text-xl font-bold">দেশনেতার চাঁদা ক্যালকুলেটর</h1>
       </div>
-      
-      <!-- Desktop Navigation -->
-      <div class="desktop-nav flex items-center gap-4">
-        <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold text-sm">প্রিমিয়াম সংস্করণ</span>
-      </div>
-
-      <!-- Mobile Hamburger Menu -->
-      <button id="hamburger-btn" class="hamburger-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main id="calculator" class="max-w-4xl mx-auto mt-24 p-6 glass-effect rounded-2xl">
+  <main class="max-w-4xl mx-auto mt-24 p-6 glass-effect rounded-2xl">
     <!-- Hero Section -->
     <div class="text-center mb-8">
       <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" class="w-32 h-32 mx-auto mb-4" alt="BNP" />
       <h2 class="text-4xl font-bold text-emerald-800 mb-3">দেশনেতার চাঁদা ক্যালকুলেটর</h2>
       <p class="text-xl italic text-emerald-700 font-medium">"আপনার আত্মত্যাগ, আমাদের পরবর্তী বাজেট।"</p>
-      <div class="mt-4 flex justify-center items-center gap-2 text-sm text-emerald-600">
-        <i class="fas fa-shield-alt"></i>
-        <span>নিরাপদ পেমেন্ট গেটওয়ে সহ</span>
-      </div>
     </div>
 
     <!-- Calculator Form -->
@@ -423,7 +177,7 @@
           আপনার পেশা
         </label>
         <select id="profession" class="input-field w-full p-4 rounded-xl text-lg font-medium">
-          <option value="" selected disabled>--পেশা নির্বাচন করুন--</option>
+          <option selected disabled>--পেশা নির্বাচন করুন--</option>
           <option value="doctor">👨‍⚕️ ডাক্তার</option>
           <option value="engineer">👨‍💻 ইঞ্জিনিয়ার</option>
           <option value="teacher">👨‍🏫 শিক্ষক</option>
@@ -521,74 +275,12 @@
         <p id="humor-text" class="text-xl italic text-emerald-800 font-semibold"></p>
       </div>
 
-      <!-- Payment Gateway Section -->
-      <div id="payment" class="payment-card mb-8">
-        <div class="text-center mb-6">
-          <h3 class="text-2xl font-bold mb-2">
-            <i class="fas fa-credit-card mr-2"></i>
-            এখনই চাঁদা প্রদান করুন
-          </h3>
-          <p class="opacity-90">নিরাপদ ও দ্রুত পেমেন্ট গেটওয়ে</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div class="bg-white bg-opacity-20 p-4 rounded-lg text-center">
-            <i class="fas fa-mobile-alt text-3xl mb-2"></i>
-            <p class="font-semibold">মোবাইল ব্যাংকিং</p>
-            <p class="text-sm opacity-80">bKash, Nagad, Rocket</p>
-          </div>
-          <div class="bg-white bg-opacity-20 p-4 rounded-lg text-center">
-            <i class="fas fa-university text-3xl mb-2"></i>
-            <p class="font-semibold">ব্যাংক ট্রান্সফার</p>
-            <p class="text-sm opacity-80">সকল ব্যাংক</p>
-          </div>
-          <div class="bg-white bg-opacity-20 p-4 rounded-lg text-center">
-            <i class="fas fa-credit-card text-3xl mb-2"></i>
-            <p class="font-semibold">কার্ড পেমেন্ট</p>
-            <p class="text-sm opacity-80">Visa, MasterCard</p>
-          </div>
-        </div>
-
-        <div class="text-center">
-          <button id="pay-now-btn" class="bg-white text-amber-600 font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <i class="fas fa-hand-holding-usd mr-2"></i>
-            <span id="pay-amount">৳ 0</span> প্রদান করুন
-          </button>
-        </div>
-      </div>
-
-      <!-- Auto Receipt Section -->
-      <div id="receipt" class="auto-receipt result-card p-6 rounded-2xl mb-8">
-        <div class="text-center mb-6">
-          <h3 class="text-2xl font-bold text-emerald-800 mb-2">
-            <i class="fas fa-receipt mr-2"></i>
-            আপনার চাঁদার রসিদ
-          </h3>
-          <p class="text-emerald-600">স্বয়ংক্রিয়ভাবে তৈরি হয়েছে</p>
-        </div>
-
-        <div id="receipt-content" class="bg-white p-6 rounded-lg shadow-lg">
-          <!-- Receipt content will be populated here -->
-        </div>
-
-        <div class="mt-6 flex flex-wrap justify-center gap-4">
-          <button id="download-pdf-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-file-pdf"></i>
-            PDF ডাউনলোড
-          </button>
-          <button id="download-jpg-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-image"></i>
-            JPG ডাউনলোড
-          </button>
-          <button id="print-receipt-btn" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
-            <i class="fas fa-print"></i>
-            প্রিন্ট করুন
-          </button>
-        </div>
-      </div>
-
       <!-- Action Buttons -->
       <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button id="generate-invoice-btn" class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+          <i class="fas fa-receipt mr-2"></i>
+          রসিদ তৈরি করুন
+        </button>
         <button id="share-result-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300">
           <i class="fas fa-share-alt mr-2"></i>
           শেয়ার করুন
@@ -596,7 +288,7 @@
       </div>
 
       <!-- Advanced Features -->
-      <div id="features" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div class="result-card p-6 rounded-2xl text-center">
           <i class="fas fa-chart-line text-4xl text-emerald-600 mb-4"></i>
           <h4 class="font-bold text-lg mb-2">ট্রেন্ড এনালাইসিস</h4>
@@ -627,50 +319,53 @@
     </section>
   </main>
 
-  <!-- Payment Modal -->
-  <div id="payment-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
-    <div class="modal-content rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
-      <button id="close-payment-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
+  <!-- Invoice Modal -->
+  <div id="invoice-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center p-4 hidden z-50">
+    <div class="modal-content rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
+      <button id="close-invoice-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">
         <i class="fas fa-times"></i>
       </button>
 
-      <div class="text-center mb-6">
-        <i class="fas fa-credit-card text-4xl text-amber-600 mb-4"></i>
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">পেমেন্ট গেটওয়ে</h3>
-        <p class="text-gray-600">নিরাপদ পেমেন্ট প্রক্রিয়া</p>
+      <div id="invoice-content" class="select-text">
+        <div class="text-center mb-6">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP Logo" class="w-20 h-20 mx-auto mb-4" />
+          <h2 class="text-3xl font-bold text-emerald-800 mb-2">দেশনেতার চাঁদা রসিদ</h2>
+          <p class="text-gray-600">বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</p>
+          <div class="w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 my-4"></div>
+        </div>
+        
+        <div id="invoice-body" class="mb-6"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="text-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="দেশনেতার স্বাক্ষর" class="mx-auto w-40 mb-2" />
+            <p class="text-sm text-gray-600 font-semibold">দেশনেতার স্বাক্ষর</p>
+            <p class="text-xs text-gray-500">তারেক রহমান</p>
+          </div>
+          <div class="text-center">
+            <div id="invoice-qr" class="mx-auto w-32 h-32 mb-2"></div>
+            <p class="text-xs text-gray-500">QR কোড স্ক্যান করুন</p>
+          </div>
+        </div>
+
+        <div class="text-center text-xs text-gray-500 border-t pt-4">
+          <p>এই রসিদটি ডিজিটালভাবে তৈরি এবং বৈধ</p>
+          <p>© ২০২৫ বাংলাদেশ জাতীয়তাবাদী দল</p>
+        </div>
       </div>
 
-      <div class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">পেমেন্ট পদ্ধতি নির্বাচন করুন</label>
-          <select id="payment-method" class="w-full p-3 border border-gray-300 rounded-lg">
-            <option value="bkash">bKash</option>
-            <option value="nagad">Nagad</option>
-            <option value="rocket">Rocket</option>
-            <option value="bank">ব্যাংক ট্রান্সফার</option>
-            <option value="card">কার্ড পেমেন্ট</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">মোবাইল নম্বর / কার্ড নম্বর</label>
-          <input type="text" id="payment-number" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="01XXXXXXXXX">
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">পিন / CVV</label>
-          <input type="password" id="payment-pin" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="****">
-        </div>
-
-        <div class="bg-amber-50 p-4 rounded-lg">
-          <p class="text-center font-bold text-amber-800">
-            প্রদেয় পরিমাণ: <span id="payment-amount-display">৳ 0</span>
-          </p>
-        </div>
-
-        <button id="confirm-payment-btn" class="w-full btn-payment text-white font-bold py-3 px-6 rounded-lg">
-          <i class="fas fa-lock mr-2"></i>
-          নিরাপদ পেমেন্ট সম্পন্ন করুন
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <button id="download-pdf-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
+          <i class="fas fa-file-pdf"></i>
+          PDF ডাউনলোড
+        </button>
+        <button id="download-jpg-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
+          <i class="fas fa-image"></i>
+          JPG ডাউনলোড
+        </button>
+        <button id="print-invoice-btn" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2">
+          <i class="fas fa-print"></i>
+          প্রিন্ট করুন
         </button>
       </div>
     </div>
@@ -721,137 +416,12 @@
     <span id="notification-text"></span>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer footer-pattern mt-16 py-12">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center gap-3 mb-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-12 h-12" />
-            <div>
-              <h3 class="text-xl font-bold">বাংলাদেশ জাতীয়তাবাদী দল</h3>
-              <p class="text-sm opacity-80">গণতন্ত্র, জাতীয়তাবাদ ও ইসলাম</p>
-            </div>
-          </div>
-          <p class="text-sm opacity-90 mb-4">
-            শহীদ প্রেসিডেন্ট জিয়াউর রহমানের আদর্শে অনুপ্রাণিত হয়ে দেশ ও জাতির সেবায় নিবেদিত।
-          </p>
-          <div class="signature-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="তারেক রহমানের স্বাক্ষর" class="mx-auto w-32 mb-2" />
-            <p class="text-sm font-semibold text-emerald-800">তারেক রহমান</p>
-            <p class="text-xs text-gray-600">ভারপ্রাপ্ত চেয়ারম্যান</p>
-          </div>
-        </div>
-        
-        <div>
-          <h4 class="text-lg font-bold mb-4">যোগাযোগ</h4>
-          <div class="space-y-2 text-sm opacity-90">
-            <p><i class="fas fa-map-marker-alt mr-2"></i>নয়াপল্টন, ঢাকা</p>
-            <p><i class="fas fa-phone mr-2"></i>+৮৮০-২-৯৫৬৬৬৯০</p>
-            <p><i class="fas fa-envelope mr-2"></i>info@bnpbd.org</p>
-            <p><i class="fas fa-globe mr-2"></i>www.bnpbd.org</p>
-          </div>
-        </div>
-        
-        <div>
-          <h4 class="text-lg font-bold mb-4">সামাজিক মাধ্যম</h4>
-          <div class="flex gap-3">
-            <a href="#" class="bg-white bg-opacity-20 p-2 rounded-full hover:bg-opacity-30 transition-all">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="bg-white bg-opacity-20 p-2 rounded-full hover:bg-opacity-30 transition-all">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="bg-white bg-opacity-20 p-2 rounded-full hover:bg-opacity-30 transition-all">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="#" class="bg-white bg-opacity-20 p-2 rounded-full hover:bg-opacity-30 transition-all">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </div>
-          
-          <div class="mt-6">
-            <h5 class="font-semibold mb-2">নিউজলেটার সাবস্ক্রাইব</h5>
-            <div class="flex">
-              <input type="email" placeholder="ইমেইল ঠিকানা" class="flex-1 px-3 py-2 rounded-l-lg text-gray-800">
-              <button class="bg-emerald-600 px-4 py-2 rounded-r-lg hover:bg-emerald-700 transition-colors">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="border-t border-white border-opacity-20 mt-8 pt-8 text-center">
-        <p class="text-sm opacity-80">
-          © ২০২৫ বাংলাদেশ জাতীয়তাবাদী দল। সকল অধিকার সংরক্ষিত।
-        </p>
-        <p class="text-xs opacity-60 mt-2">
-          এই ক্যালকুলেটরটি শুধুমাত্র বিনোদনের উদ্দেশ্যে তৈরি করা হয়েছে।
-        </p>
-      </div>
-    </div>
-  </footer>
-
   <!-- Scripts -->
   <script>
     // Global variables
     let currentCalculation = null;
     let chadaChartInstance = null;
     let yearlyChartInstance = null;
-
-    // Mobile menu functionality
-    function initMobileMenu() {
-      const hamburgerBtn = document.getElementById('hamburger-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-      const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
-
-      function openMobileMenu() {
-        mobileMenu.classList.add('open');
-        mobileMenuOverlay.classList.add('open');
-        hamburgerBtn.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeMobileMenu() {
-        mobileMenu.classList.remove('open');
-        mobileMenuOverlay.classList.remove('open');
-        hamburgerBtn.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-
-      hamburgerBtn.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('open')) {
-          closeMobileMenu();
-        } else {
-          openMobileMenu();
-        }
-      });
-
-      closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
-      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-      // Close menu on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-          closeMobileMenu();
-        }
-      });
-    }
-
-    // Scroll to section function
-    function scrollToSection(sectionId) {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu after navigation
-        document.getElementById('mobile-menu').classList.remove('open');
-        document.getElementById('mobile-menu-overlay').classList.remove('open');
-        document.getElementById('hamburger-btn').classList.remove('open');
-        document.body.style.overflow = '';
-      }
-    }
 
     // Notification system
     function showNotification(message, type = 'success') {
@@ -905,112 +475,6 @@
       return { icon: "🏆", text: "সরাসরি নমিনেশন!" };
     }
 
-    // Generate automatic receipt
-    function generateAutoReceipt() {
-      if (!currentCalculation) return;
-
-      const professionSelect = document.getElementById("profession");
-      const selectedProfession = professionSelect.options[professionSelect.selectedIndex].text;
-      const today = new Date();
-      const dateString = today.toLocaleDateString("bn-BD", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      });
-
-      const receiptContent = `
-        <div class="text-center mb-6">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP Logo" class="w-20 h-20 mx-auto mb-4" />
-          <h2 class="text-3xl font-bold text-emerald-800 mb-2">দেশনেতার চাঁদা রসিদ</h2>
-          <p class="text-gray-600">বাংলাদেশ জাতীয়তাবাদী দল (বিএনপি)</p>
-          <div class="w-full h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 my-4"></div>
-        </div>
-        
-        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-lg mb-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h4 class="font-bold text-emerald-800 mb-3">ব্যক্তিগত তথ্য</h4>
-              <table class="w-full text-sm">
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">পেশা:</td>
-                  <td class="py-2">${selectedProfession}</td>
-                </tr>
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">মাসিক আয়:</td>
-                  <td class="py-2 font-bold">${formatCurrency(currentCalculation.salary)}</td>
-                </tr>
-                <tr>
-                  <td class="font-semibold py-2 text-emerald-800">তারিখ:</td>
-                  <td class="py-2">${dateString}</td>
-                </tr>
-              </table>
-            </div>
-            <div>
-              <h4 class="font-bold text-emerald-800 mb-3">চাঁদার বিবরণ</h4>
-              <table class="w-full text-sm">
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">দৈনিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.dailyChada)}</td>
-                </tr>
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">সাপ্তাহিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.weeklyChada)}</td>
-                </tr>
-                <tr class="border-b border-emerald-200">
-                  <td class="font-semibold py-2 text-emerald-800">মাসিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.monthlyChada)}</td>
-                </tr>
-                <tr>
-                  <td class="font-semibold py-2 text-emerald-800">বাৎসরিক:</td>
-                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.yearlyChada)}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-        
-        <div class="text-center bg-emerald-600 text-white p-4 rounded-lg mb-6">
-          <p class="font-bold text-xl">মোট বাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}</p>
-          <p class="text-sm opacity-90">আপনার অবদানের জন্য ধন্যবাদ!</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div class="text-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="দেশনেতার স্বাক্ষর" class="mx-auto w-40 mb-2" />
-            <p class="text-sm text-gray-600 font-semibold">দেশনেতার স্বাক্ষর</p>
-            <p class="text-xs text-gray-500">তারেক রহমান</p>
-          </div>
-          <div class="text-center">
-            <div id="receipt-qr" class="mx-auto w-32 h-32 mb-2"></div>
-            <p class="text-xs text-gray-500">QR কোড স্ক্যান করুন</p>
-          </div>
-        </div>
-
-        <div class="text-center text-xs text-gray-500 border-t pt-4">
-          <p>এই রসিদটি ডিজিটালভাবে তৈরি এবং বৈধ</p>
-          <p>© ২০২৫ বাংলাদেশ জাতীয়তাবাদী দল</p>
-        </div>
-      `;
-
-      document.getElementById("receipt-content").innerHTML = receiptContent;
-
-      // Generate QR code
-      const qrContainer = document.getElementById("receipt-qr");
-      qrContainer.innerHTML = "";
-      const qrText = `পেশা: ${selectedProfession}\nমাসিক চাঁদা: ${formatCurrency(currentCalculation.monthlyChada)}\nবাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}\nতারিখ: ${dateString}`;
-      new QRCode(qrContainer, {
-        text: qrText,
-        width: 128,
-        height: 128,
-        colorDark: "#065f46",
-        colorLight: "#ffffff",
-      });
-
-      // Update payment amount
-      document.getElementById("pay-amount").textContent = formatCurrency(currentCalculation.monthlyChada);
-      document.getElementById("payment-amount-display").textContent = formatCurrency(currentCalculation.monthlyChada);
-    }
-
     // Calculate chada function
     function calculateChada() {
       const profession = document.getElementById("profession").value;
@@ -1021,12 +485,10 @@
       const errorText = document.getElementById("error-text");
       const loader = document.getElementById("loader");
 
-      // Hide previous results and errors
       errorMessage.classList.add("hidden");
       resultContainer.classList.add("hidden");
 
-      // Validation
-      if (!profession || profession === "") {
+      if (!profession || profession === "default") {
         errorText.textContent = "বিপ্লবী, আপনার পেশা নির্বাচন করুন!";
         errorMessage.classList.remove("hidden");
         showNotification("পেশা নির্বাচন করুন!", "error");
@@ -1097,13 +559,9 @@
         // Charts
         updateCharts(dailyChada, weeklyChada, monthlyChada, yearlyChada);
 
-        // Generate automatic receipt
-        generateAutoReceipt();
-
-        // Show results
         resultContainer.classList.remove("hidden");
         resultContainer.scrollIntoView({ behavior: "smooth" });
-        showNotification("হিসাব সম্পন্ন হয়েছে! রসিদ স্বয়ংক্রিয়ভাবে তৈরি হয়েছে।", "success");
+        showNotification("হিসাব সম্পন্ন হয়েছে!", "success");
       }, 1500);
     }
 
@@ -1183,38 +641,6 @@
       });
     }
 
-    // Payment functions
-    function showPaymentModal() {
-      if (!currentCalculation) {
-        showNotification("প্রথমে হিসাব করুন!", "error");
-        return;
-      }
-      document.getElementById("payment-modal").classList.remove("hidden");
-    }
-
-    function processPayment() {
-      const paymentMethod = document.getElementById("payment-method").value;
-      const paymentNumber = document.getElementById("payment-number").value;
-      const paymentPin = document.getElementById("payment-pin").value;
-
-      if (!paymentNumber || !paymentPin) {
-        showNotification("সকল তথ্য পূরণ করুন!", "error");
-        return;
-      }
-
-      // Simulate payment processing
-      showNotification("পেমেন্ট প্রক্রিয়াধীন...", "info");
-      
-      setTimeout(() => {
-        document.getElementById("payment-modal").classList.add("hidden");
-        showNotification(`${formatCurrency(currentCalculation.monthlyChada)} সফলভাবে প্রদান করা হয়েছে!`, "success");
-        
-        // Clear form
-        document.getElementById("payment-number").value = "";
-        document.getElementById("payment-pin").value = "";
-      }, 2000);
-    }
-
     // Share result function
     function shareResult() {
       if (!currentCalculation) {
@@ -1237,13 +663,98 @@
       }
     }
 
+    // Invoice generation
+    function generateInvoice() {
+      if (!currentCalculation) {
+        showNotification("প্রথমে হিসাব করুন!", "error");
+        return;
+      }
+
+      const professionSelect = document.getElementById("profession");
+      const selectedProfession = professionSelect.options[professionSelect.selectedIndex].text;
+      const today = new Date();
+      const dateString = today.toLocaleDateString("bn-BD", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+
+      // Fill invoice modal content
+      const invoiceContent = `
+        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-lg mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="font-bold text-emerald-800 mb-3">ব্যক্তিগত তথ্য</h4>
+              <table class="w-full text-sm">
+                <tr class="border-b border-emerald-200">
+                  <td class="font-semibold py-2 text-emerald-800">পেশা:</td>
+                  <td class="py-2">${selectedProfession}</td>
+                </tr>
+                <tr class="border-b border-emerald-200">
+                  <td class="font-semibold py-2 text-emerald-800">মাসিক আয়:</td>
+                  <td class="py-2 font-bold">${formatCurrency(currentCalculation.salary)}</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold py-2 text-emerald-800">তারিখ:</td>
+                  <td class="py-2">${dateString}</td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <h4 class="font-bold text-emerald-800 mb-3">চাঁদার বিবরণ</h4>
+              <table class="w-full text-sm">
+                <tr class="border-b border-emerald-200">
+                  <td class="font-semibold py-2 text-emerald-800">দৈনিক:</td>
+                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.dailyChada)}</td>
+                </tr>
+                <tr class="border-b border-emerald-200">
+                  <td class="font-semibold py-2 text-emerald-800">সাপ্তাহিক:</td>
+                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.weeklyChada)}</td>
+                </tr>
+                <tr class="border-b border-emerald-200">
+                  <td class="font-semibold py-2 text-emerald-800">মাসিক:</td>
+                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.monthlyChada)}</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold py-2 text-emerald-800">বাৎসরিক:</td>
+                  <td class="py-2 font-bold text-emerald-600">${formatCurrency(currentCalculation.yearlyChada)}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="text-center bg-emerald-600 text-white p-4 rounded-lg mb-4">
+          <p class="font-bold text-xl">মোট বাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}</p>
+          <p class="text-sm opacity-90">আপনার অবদানের জন্য ধন্যবাদ!</p>
+        </div>
+      `;
+
+      document.getElementById("invoice-body").innerHTML = invoiceContent;
+
+      // Generate QR code
+      const qrContainer = document.getElementById("invoice-qr");
+      qrContainer.innerHTML = "";
+      const qrText = `পেশা: ${selectedProfession}\nমাসিক চাঁদা: ${formatCurrency(currentCalculation.monthlyChada)}\nবাকী টাকা: ${formatCurrency(currentCalculation.remainingSalary)}\nতারিখ: ${dateString}`;
+      new QRCode(qrContainer, {
+        text: qrText,
+        width: 128,
+        height: 128,
+        colorDark: "#065f46",
+        colorLight: "#ffffff",
+      });
+
+      // Show modal
+      document.getElementById("invoice-modal").classList.remove("hidden");
+      showNotification("রসিদ তৈরি হয়েছে!", "success");
+    }
+
     // Download PDF function
     function downloadPDF() {
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF('p', 'mm', 'a4');
-      const receiptElement = document.getElementById("receipt-content");
+      const invoiceElement = document.getElementById("invoice-content");
 
-      html2canvas(receiptElement, {
+      html2canvas(invoiceElement, {
         scale: 2,
         useCORS: true,
         allowTaint: true,
@@ -1261,9 +772,9 @@
 
     // Download JPG function
     function downloadJPG() {
-      const receiptElement = document.getElementById("receipt-content");
+      const invoiceElement = document.getElementById("invoice-content");
       
-      html2canvas(receiptElement, {
+      html2canvas(invoiceElement, {
         scale: 2,
         useCORS: true,
         allowTaint: true,
@@ -1277,9 +788,9 @@
       });
     }
 
-    // Print receipt function
-    function printReceipt() {
-      const receiptContent = document.getElementById("receipt-content").innerHTML;
+    // Print invoice function
+    function printInvoice() {
+      const invoiceContent = document.getElementById("invoice-content").innerHTML;
       const printWindow = window.open('', '_blank');
       printWindow.document.write(`
         <html>
@@ -1289,7 +800,7 @@
               body { font-family: 'Arial', sans-serif; margin: 20px; }
             </style>
           </head>
-          <body>${receiptContent}</body>
+          <body>${invoiceContent}</body>
         </html>
       `);
       printWindow.document.close();
@@ -1421,40 +932,33 @@
       leaderboardModal.classList.remove('hidden');
     }
 
-    // Initialize everything when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize mobile menu
-      initMobileMenu();
+    // Event listeners
+    document.getElementById("calculate-btn").addEventListener("click", calculateChada);
+    document.getElementById("generate-invoice-btn").addEventListener("click", generateInvoice);
+    document.getElementById("share-result-btn").addEventListener("click", shareResult);
+    document.getElementById("download-pdf-btn").addEventListener("click", downloadPDF);
+    document.getElementById("download-jpg-btn").addEventListener("click", downloadJPG);
+    document.getElementById("print-invoice-btn").addEventListener("click", printInvoice);
+    document.getElementById("close-invoice-btn").addEventListener("click", () => document.getElementById("invoice-modal").classList.add("hidden"));
+    document.getElementById("trend-analysis-btn").addEventListener("click", showTrendAnalysis);
+    document.getElementById("comparison-btn").addEventListener("click", showComparison);
+    document.getElementById("leaderboard-btn").addEventListener("click", showLeaderboard);
+    document.getElementById("close-leaderboard-btn").addEventListener("click", () => document.getElementById('leaderboard-modal').classList.add('hidden'));
+    document.getElementById("close-comparison-btn").addEventListener("click", () => document.getElementById('comparison-modal').classList.add('hidden'));
+    document.getElementById("close-trend-analysis-btn").addEventListener("click", () => document.getElementById('trend-analysis-modal').classList.add('hidden'));
 
-      // Event listeners
-      document.getElementById("calculate-btn").addEventListener("click", calculateChada);
-      document.getElementById("pay-now-btn").addEventListener("click", showPaymentModal);
-      document.getElementById("confirm-payment-btn").addEventListener("click", processPayment);
-      document.getElementById("close-payment-btn").addEventListener("click", () => document.getElementById("payment-modal").classList.add("hidden"));
-      document.getElementById("share-result-btn").addEventListener("click", shareResult);
-      document.getElementById("download-pdf-btn").addEventListener("click", downloadPDF);
-      document.getElementById("download-jpg-btn").addEventListener("click", downloadJPG);
-      document.getElementById("print-receipt-btn").addEventListener("click", printReceipt);
-      document.getElementById("trend-analysis-btn").addEventListener("click", showTrendAnalysis);
-      document.getElementById("comparison-btn").addEventListener("click", showComparison);
-      document.getElementById("leaderboard-btn").addEventListener("click", showLeaderboard);
-      document.getElementById("close-leaderboard-btn").addEventListener("click", () => document.getElementById('leaderboard-modal').classList.add('hidden'));
-      document.getElementById("close-comparison-btn").addEventListener("click", () => document.getElementById('comparison-modal').classList.add('hidden'));
-      document.getElementById("close-trend-analysis-btn").addEventListener("click", () => document.getElementById('trend-analysis-modal').classList.add('hidden'));
-
-      // Close modals on ESC key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          document.getElementById("payment-modal").classList.add("hidden");
-          document.getElementById('leaderboard-modal').classList.add('hidden');
-          document.getElementById('comparison-modal').classList.add('hidden');
-          document.getElementById('trend-analysis-modal').classList.add('hidden');
-        }
-      });
-
-      // Initialize with welcome message
-      showNotification("স্বাগতম! প্রিমিয়াম চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
+    // Close modals on ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.getElementById("invoice-modal").classList.add("hidden");
+        document.getElementById('leaderboard-modal').classList.add('hidden');
+        document.getElementById('comparison-modal').classList.add('hidden');
+        document.getElementById('trend-analysis-modal').classList.add('hidden');
+      }
     });
+
+    // Initialize
+    showNotification("স্বাগতম! চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
   </script>
 </body>
 </html>
