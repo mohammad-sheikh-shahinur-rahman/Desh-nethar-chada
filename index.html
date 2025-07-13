@@ -207,9 +207,179 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.7; }
     }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open {
+      right: 0;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+    }
+
+    .hamburger-btn span {
+      width: 30px;
+      height: 3px;
+      background: #064e3b;
+      border-radius: 10px;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
+    }
+
+    .hamburger-btn.open span:first-child {
+      transform: rotate(45deg);
+    }
+
+    .hamburger-btn.open span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .hamburger-btn.open span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger-btn {
+        display: flex;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      color: #064e3b;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(6, 78, 59, 0.1);
+    }
+
+    .menu-item:hover {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+
+    .menu-item i {
+      width: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-10 h-10" />
+          <div>
+            <h3 class="font-bold text-lg text-emerald-800">বিএনপি</h3>
+            <p class="text-xs text-gray-600">চাঁদা ক্যালকুলেটর</p>
+          </div>
+        </div>
+        <button id="close-mobile-menu" class="text-2xl text-gray-600 hover:text-gray-900">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <nav class="space-y-2">
+        <a href="#calculator" class="menu-item" onclick="scrollToSection('calculator')">
+          <i class="fas fa-calculator"></i>
+          <span>ক্যালকুলেটর</span>
+        </a>
+        <a href="#payment" class="menu-item" onclick="scrollToSection('payment')">
+          <i class="fas fa-credit-card"></i>
+          <span>পেমেন্ট</span>
+        </a>
+        <a href="#receipt" class="menu-item" onclick="scrollToSection('receipt')">
+          <i class="fas fa-receipt"></i>
+          <span>রসিদ</span>
+        </a>
+        <a href="#features" class="menu-item" onclick="scrollToSection('features')">
+          <i class="fas fa-star"></i>
+          <span>ফিচারসমূহ</span>
+        </a>
+        <div class="menu-item" onclick="showTrendAnalysis()">
+          <i class="fas fa-chart-line"></i>
+          <span>ট্রেন্ড এনালাইসিস</span>
+        </div>
+        <div class="menu-item" onclick="showComparison()">
+          <i class="fas fa-users"></i>
+          <span>তুলনামূলক বিশ্লেষণ</span>
+        </div>
+        <div class="menu-item" onclick="showLeaderboard()">
+          <i class="fas fa-trophy"></i>
+          <span>লিডারবোর্ড</span>
+        </div>
+        <div class="menu-item" onclick="shareResult()">
+          <i class="fas fa-share-alt"></i>
+          <span>শেয়ার করুন</span>
+        </div>
+      </nav>
+
+      <div class="mt-8 pt-6 border-t border-gray-200">
+        <div class="text-center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Tarique_Rahman_signature.svg" alt="তারেক রহমানের স্বাক্ষর" class="mx-auto w-24 mb-2" />
+          <p class="text-sm font-semibold text-emerald-800">তারেক রহমান</p>
+          <p class="text-xs text-gray-600">ভারপ্রাপ্ত চেয়ারম্যান</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header class="fixed w-full top-0 z-50 glass-effect text-emerald-800 shadow-2xl p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -217,14 +387,23 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" alt="BNP" class="w-12 h-12" />
         <h1 class="text-xl font-bold">দেশনেতার চাঁদা ক্যালকুলেটর</h1>
       </div>
-      <div class="text-sm">
-        <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">প্রিমিয়াম সংস্করণ</span>
+      
+      <!-- Desktop Navigation -->
+      <div class="desktop-nav flex items-center gap-4">
+        <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold text-sm">প্রিমিয়াম সংস্করণ</span>
       </div>
+
+      <!-- Mobile Hamburger Menu -->
+      <button id="hamburger-btn" class="hamburger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-4xl mx-auto mt-24 p-6 glass-effect rounded-2xl">
+  <main id="calculator" class="max-w-4xl mx-auto mt-24 p-6 glass-effect rounded-2xl">
     <!-- Hero Section -->
     <div class="text-center mb-8">
       <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Bangladesh_Nationalist_Party_Election_Symbol.svg" class="w-32 h-32 mx-auto mb-4" alt="BNP" />
@@ -244,7 +423,7 @@
           আপনার পেশা
         </label>
         <select id="profession" class="input-field w-full p-4 rounded-xl text-lg font-medium">
-          <option selected disabled>--পেশা নির্বাচন করুন--</option>
+          <option value="" selected disabled>--পেশা নির্বাচন করুন--</option>
           <option value="doctor">👨‍⚕️ ডাক্তার</option>
           <option value="engineer">👨‍💻 ইঞ্জিনিয়ার</option>
           <option value="teacher">👨‍🏫 শিক্ষক</option>
@@ -343,7 +522,7 @@
       </div>
 
       <!-- Payment Gateway Section -->
-      <div class="payment-card mb-8">
+      <div id="payment" class="payment-card mb-8">
         <div class="text-center mb-6">
           <h3 class="text-2xl font-bold mb-2">
             <i class="fas fa-credit-card mr-2"></i>
@@ -379,7 +558,7 @@
       </div>
 
       <!-- Auto Receipt Section -->
-      <div id="auto-receipt" class="auto-receipt result-card p-6 rounded-2xl mb-8">
+      <div id="receipt" class="auto-receipt result-card p-6 rounded-2xl mb-8">
         <div class="text-center mb-6">
           <h3 class="text-2xl font-bold text-emerald-800 mb-2">
             <i class="fas fa-receipt mr-2"></i>
@@ -417,7 +596,7 @@
       </div>
 
       <!-- Advanced Features -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div id="features" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div class="result-card p-6 rounded-2xl text-center">
           <i class="fas fa-chart-line text-4xl text-emerald-600 mb-4"></i>
           <h4 class="font-bold text-lg mb-2">ট্রেন্ড এনালাইসিস</h4>
@@ -621,6 +800,59 @@
     let chadaChartInstance = null;
     let yearlyChartInstance = null;
 
+    // Mobile menu functionality
+    function initMobileMenu() {
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+      const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+
+      function openMobileMenu() {
+        mobileMenu.classList.add('open');
+        mobileMenuOverlay.classList.add('open');
+        hamburgerBtn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        mobileMenuOverlay.classList.remove('open');
+        hamburgerBtn.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      hamburgerBtn.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('open')) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+
+      closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          closeMobileMenu();
+        }
+      });
+    }
+
+    // Scroll to section function
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        // Close mobile menu after navigation
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.getElementById('mobile-menu-overlay').classList.remove('open');
+        document.getElementById('hamburger-btn').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
     // Notification system
     function showNotification(message, type = 'success') {
       const notification = document.getElementById('notification');
@@ -789,10 +1021,12 @@
       const errorText = document.getElementById("error-text");
       const loader = document.getElementById("loader");
 
+      // Hide previous results and errors
       errorMessage.classList.add("hidden");
       resultContainer.classList.add("hidden");
 
-      if (!profession || profession === "default") {
+      // Validation
+      if (!profession || profession === "") {
         errorText.textContent = "বিপ্লবী, আপনার পেশা নির্বাচন করুন!";
         errorMessage.classList.remove("hidden");
         showNotification("পেশা নির্বাচন করুন!", "error");
@@ -866,6 +1100,7 @@
         // Generate automatic receipt
         generateAutoReceipt();
 
+        // Show results
         resultContainer.classList.remove("hidden");
         resultContainer.scrollIntoView({ behavior: "smooth" });
         showNotification("হিসাব সম্পন্ন হয়েছে! রসিদ স্বয়ংক্রিয়ভাবে তৈরি হয়েছে।", "success");
@@ -1186,34 +1421,41 @@
       leaderboardModal.classList.remove('hidden');
     }
 
-    // Event listeners
-    document.getElementById("calculate-btn").addEventListener("click", calculateChada);
-    document.getElementById("pay-now-btn").addEventListener("click", showPaymentModal);
-    document.getElementById("confirm-payment-btn").addEventListener("click", processPayment);
-    document.getElementById("close-payment-btn").addEventListener("click", () => document.getElementById("payment-modal").classList.add("hidden"));
-    document.getElementById("share-result-btn").addEventListener("click", shareResult);
-    document.getElementById("download-pdf-btn").addEventListener("click", downloadPDF);
-    document.getElementById("download-jpg-btn").addEventListener("click", downloadJPG);
-    document.getElementById("print-receipt-btn").addEventListener("click", printReceipt);
-    document.getElementById("trend-analysis-btn").addEventListener("click", showTrendAnalysis);
-    document.getElementById("comparison-btn").addEventListener("click", showComparison);
-    document.getElementById("leaderboard-btn").addEventListener("click", showLeaderboard);
-    document.getElementById("close-leaderboard-btn").addEventListener("click", () => document.getElementById('leaderboard-modal').classList.add('hidden'));
-    document.getElementById("close-comparison-btn").addEventListener("click", () => document.getElementById('comparison-modal').classList.add('hidden'));
-    document.getElementById("close-trend-analysis-btn").addEventListener("click", () => document.getElementById('trend-analysis-modal').classList.add('hidden'));
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mobile menu
+      initMobileMenu();
 
-    // Close modals on ESC key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        document.getElementById("payment-modal").classList.add("hidden");
-        document.getElementById('leaderboard-modal').classList.add('hidden');
-        document.getElementById('comparison-modal').classList.add('hidden');
-        document.getElementById('trend-analysis-modal').classList.add('hidden');
-      }
+      // Event listeners
+      document.getElementById("calculate-btn").addEventListener("click", calculateChada);
+      document.getElementById("pay-now-btn").addEventListener("click", showPaymentModal);
+      document.getElementById("confirm-payment-btn").addEventListener("click", processPayment);
+      document.getElementById("close-payment-btn").addEventListener("click", () => document.getElementById("payment-modal").classList.add("hidden"));
+      document.getElementById("share-result-btn").addEventListener("click", shareResult);
+      document.getElementById("download-pdf-btn").addEventListener("click", downloadPDF);
+      document.getElementById("download-jpg-btn").addEventListener("click", downloadJPG);
+      document.getElementById("print-receipt-btn").addEventListener("click", printReceipt);
+      document.getElementById("trend-analysis-btn").addEventListener("click", showTrendAnalysis);
+      document.getElementById("comparison-btn").addEventListener("click", showComparison);
+      document.getElementById("leaderboard-btn").addEventListener("click", showLeaderboard);
+      document.getElementById("close-leaderboard-btn").addEventListener("click", () => document.getElementById('leaderboard-modal').classList.add('hidden'));
+      document.getElementById("close-comparison-btn").addEventListener("click", () => document.getElementById('comparison-modal').classList.add('hidden'));
+      document.getElementById("close-trend-analysis-btn").addEventListener("click", () => document.getElementById('trend-analysis-modal').classList.add('hidden'));
+
+      // Close modals on ESC key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          document.getElementById("payment-modal").classList.add("hidden");
+          document.getElementById('leaderboard-modal').classList.add('hidden');
+          document.getElementById('comparison-modal').classList.add('hidden');
+          document.getElementById('trend-analysis-modal').classList.add('hidden');
+        }
+      });
+
+      // Initialize with welcome message
+      showNotification("স্বাগতম! প্রিমিয়াম চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
     });
-
-    // Initialize
-    showNotification("স্বাগতম! প্রিমিয়াম চাঁদা ক্যালকুলেটরে আপনাকে স্বাগতম।", "success");
   </script>
 </body>
 </html>
+
